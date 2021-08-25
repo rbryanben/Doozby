@@ -12,6 +12,7 @@
         android:supportsRtl="true"
         android:theme="@style/Theme.Doozby">
 
+        <!--
         <activity
             android:name=".WelcomePage.WelcomeActivity"
             android:theme="@style/Theme.Doozby">
@@ -20,9 +21,9 @@
                 <category android:name="android.intent.category.LAUNCHER" />
             </intent-filter>
         </activity>
-        <activity android:name=".MainActivity"/>
+        <activity android:name=".MainActivity"/> -->
 
-        <!--
+
         <activity
             android:name=".SplashScreen.Splash"
             android:theme="@style/SplashTheme">
@@ -32,7 +33,7 @@
             </intent-filter>
         </activity>
         <activity android:name=".WelcomePage.WelcomeActivity"/>
-        <activity android:name=".MainActivity"/> -->
+        <activity android:name=".MainActivity"/>
     </application>
 
 

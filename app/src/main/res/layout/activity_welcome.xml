@@ -43,37 +43,27 @@
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent" />
 
-    <!-- Create Account -->
-    <TextView
+    <!-- Sign In -->
+    <com.wapazock.doozby.CustomComponents.CircularTransparentButton
         android:id="@+id/textView"
         android:layout_width="280dp"
         android:layout_height="60dp"
         android:layout_marginBottom="20dp"
-        android:background="@drawable/login_button_background"
-        android:gravity="center"
-        android:text="Sign In"
-        android:textColor="@color/white"
-        android:textSize="14dp"
-        android:textStyle="bold"
         app:layout_constraintBottom_toTopOf="@id/welcomePageCreateAccountTextView"
         app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintStart_toStartOf="parent" />
+        app:layout_constraintStart_toStartOf="parent"
+        app:text="Sign In"/>
 
-    <!-- Sign in -->
-    <TextView
+    <!-- Create An Account -->
+    <com.wapazock.doozby.CustomComponents.CircularTransparentButton
         android:id="@+id/welcomePageCreateAccountTextView"
         android:layout_width="280dp"
         android:layout_height="60dp"
-        android:text="Create an Account"
-        android:background="@drawable/login_button_background"
         android:layout_marginBottom="60dp"
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintEnd_toEndOf="parent"
-        android:gravity="center"
-        android:textColor="@color/white"
-        android:textStyle="bold"
-        android:textSize="14dp"
-        app:layout_constraintStart_toStartOf="parent" />
+        app:layout_constraintStart_toStartOf="parent"
+        app:text="Create an Account"/>
 
 
 </androidx.constraintlayout.widget.ConstraintLayout>
