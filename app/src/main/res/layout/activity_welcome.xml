@@ -3,7 +3,8 @@
     android:layout_width="match_parent"
     android:layout_height="match_parent"
     xmlns:app="http://schemas.android.com/apk/res-auto"
-    android:background="@color/orange">
+    android:background="@color/orange"
+    android:backgroundTint="@color/black">
 
     <!-- Background Video Player //Starts Hidden -->
     <SurfaceView
@@ -12,7 +13,8 @@
         android:layout_height="match_parent"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toTopOf="parent"
-        android:visibility="visible"/>
+        android:visibility="visible" />
+
 
     <!-- Skip Button -->
     <TextView
@@ -23,7 +25,7 @@
         android:layout_marginTop="50dp"
         android:textColor="@color/white"
         android:textStyle="bold"
-        android:textSize="18dp"
+        android:textSize="14dp"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintTop_toTopOf="parent" />
 

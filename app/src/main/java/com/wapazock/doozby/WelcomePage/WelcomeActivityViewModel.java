@@ -18,16 +18,15 @@ public class WelcomeActivityViewModel extends ViewModel {
 
 
     // Variables
-    MediaPlayer welcomeMediaPlayer;
+    private MediaPlayer welcomeMediaPlayer;
+
 
     // Initialization Function
     private void init(){
-
         // Initialize Media Player
         if (welcomeMediaPlayer == null) {
             initWelcomeMediaPlayer();
         }
-
     }
 
     // Initialize Welcome Media Player : Initializes the welcome media player
@@ -53,7 +52,6 @@ public class WelcomeActivityViewModel extends ViewModel {
         }
     }
 
-
     // Get Media Player : Returns a live MediaPlayer
     public LiveData<MediaPlayer> getMediaPlayer(){
          //initialize
@@ -67,15 +65,27 @@ public class WelcomeActivityViewModel extends ViewModel {
         return mutableLiveData;
     }
 
-    // Activity Pause or Destroyed : Release the Media Player when the activity has stopped
+    // Activity Stopped : Release the Media Player when the activity has stopped
     public void activityStopped(){
-        releaseMediaPlayer();
-    }
-
-    // Release MediaPlayer : Releases the media player
-    private void releaseMediaPlayer(){
+        // release the media player if it is not null
         if (welcomeMediaPlayer != null){
             welcomeMediaPlayer.release();
+        }
+    }
+
+    // Activity Resumed : Resume playing the video
+    public void activityResumed(){
+        //check if is the media player is not null
+        if (welcomeMediaPlayer != null){
+            welcomeMediaPlayer.start();
+        }
+    }
+
+    // Activity Paused : Pause the Media Player
+    public void activityPaused(){
+        //check if is the media player is not null
+        if (welcomeMediaPlayer != null) {
+            welcomeMediaPlayer.pause();
         }
     }
 

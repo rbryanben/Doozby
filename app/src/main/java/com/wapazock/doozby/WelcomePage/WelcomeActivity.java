@@ -92,6 +92,13 @@ public class WelcomeActivity extends AppCompatActivity {
     @Override
     protected void onPause() {
         super.onPause();
-        welcomeActivityViewModel.activityStopped();
+        welcomeActivityViewModel.activityPaused();
+    }
+
+    // On Resume : Resume playing the video
+    @Override
+    protected void onResume() {
+        super.onResume();
+        welcomeActivityViewModel.activityResumed();
     }
 }

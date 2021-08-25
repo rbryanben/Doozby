@@ -1,7 +1,7 @@
 <?xml version="1.0" encoding="utf-8"?>
 <resources>
     <!-- Default -->
-    <color name="black">#FF000000</color>
+    <color name="black">#323232</color>
     <color name="white">#FFFFFFFF</color>
 
     <!-- My Colors -->
@@ -10,4 +10,5 @@
     <color name="orange">#AA6C39</color>
     <color name="light_orange">#D49A6A</color>
     <color name="white_orange">#FFD1AA</color>
+    <color name="dark_green">#15150D</color>
 </resources>
