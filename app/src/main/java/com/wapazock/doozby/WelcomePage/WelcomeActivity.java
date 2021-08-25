@@ -13,39 +13,48 @@ import android.widget.VideoView;
 import androidx.annotation.NonNull;
 import androidx.annotation.Nullable;
 import androidx.appcompat.app.AppCompatActivity;
+import androidx.lifecycle.ViewModel;
+import androidx.lifecycle.ViewModelProvider;
+
 import com.wapazock.doozby.R;
 import com.wapazock.doozby.Utils.LayoutHelper;
 
-public class WelcomeActivity extends AppCompatActivity  implements MediaPlayer.OnPreparedListener {
+public class WelcomeActivity extends AppCompatActivity {
 
     // View
     private SurfaceView welcomeVideoSurface;
 
     // Variables
-    private MediaPlayer mediaPlayer;
+    private WelcomeActivityViewModel welcomeActivityViewModel;
 
     @Override
     protected void onCreate(@Nullable  Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_welcome);
 
-        // make the page fullscreen
-        LayoutHelper.removeLimits(WelcomeActivity.this);
-        LayoutHelper.setTranslucent(WelcomeActivity.this);
+        // Make fullscreen with a translucent status Bar
+        setFullScreen();
 
-        //set view elements
+        // Assign View Elements
         welcomeVideoSurface = findViewById(R.id.welcomePageBackgroundSurfaceView);
 
-        //bind the video with the surface view
+        // Set the activity View Controller
+        welcomeActivityViewModel = new ViewModelProvider(this).get(WelcomeActivityViewModel.class);
+
+        // Bind video with the view model
         bindVideo();
+    }
+
+    // Make FullScreen : Sets the activity to become fullscreen with a translucent
+    //                   status bar
+    private void setFullScreen(){
+        LayoutHelper.removeLimits(WelcomeActivity.this);
+        LayoutHelper.setTranslucent(WelcomeActivity.this);
     }
 
     // Bind Video : Binds the welcome video to the welcome
     //          SurfaceView, and plays the video in an infinite loop
-    private void bindVideo(){
-        //video url
-        String welcomeVideoURL = getString(R.string.welcome_video_url) ;
-
+    public void bindVideo(){
         //get welcomeVideoSurface holder
         SurfaceHolder welcomeVideoSurfaceHolder = welcomeVideoSurface.getHolder();
 
@@ -53,21 +62,8 @@ public class WelcomeActivity extends AppCompatActivity  implements MediaPlayer.O
         welcomeVideoSurfaceHolder.addCallback(new SurfaceHolder.Callback() {
             @Override
             public void surfaceCreated(@NonNull SurfaceHolder holder) {
-                // Create A New Media Player
-                mediaPlayer = new MediaPlayer();
-                mediaPlayer.setDisplay(welcomeVideoSurfaceHolder);
-
-                //try and set the player source
-                try {
-                    mediaPlayer.setDataSource(welcomeVideoURL);
-                    mediaPlayer.prepare();
-                    mediaPlayer.setOnPreparedListener(WelcomeActivity.this);
-                    mediaPlayer.setAudioStreamType(AudioManager.STREAM_MUSIC);
-
-                }
-                catch (Exception e){
-                    e.printStackTrace();
-                }
+                //bind surface with view model
+                welcomeActivityViewModel.getMediaPlayer().getValue().setDisplay(welcomeVideoSurfaceHolder);
             }
 
             @Override
@@ -83,30 +79,19 @@ public class WelcomeActivity extends AppCompatActivity  implements MediaPlayer.O
     }
 
 
-
-    // On Prepare : Play the video when the media player is ready
-    @Override
-    public void onPrepared(MediaPlayer mp) {
-        mediaPlayer.start();
-        mediaPlayer.setLooping(true);
-    }
-
-    // Release MediaPlayer : Releases the media player
-    private void releaseMediaPlayer(){
-        if (mediaPlayer != null){
-            mediaPlayer.release();
-        }
-    }
-
+    // On Destroy : When activity is destroyed release the media player
+    //      otherwise it will keep playing in the background
     @Override
     protected void onDestroy() {
         super.onDestroy();
-        releaseMediaPlayer();
+        welcomeActivityViewModel.activityStopped();
     }
 
+    // On Destroy : When activity is paused release the media player
+    //      otherwise it will keep playing in the background
     @Override
     protected void onPause() {
         super.onPause();
-        releaseMediaPlayer();
+        welcomeActivityViewModel.activityStopped();
     }
 }
