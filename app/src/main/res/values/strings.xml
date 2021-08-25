@@ -1,9 +1,7 @@
 <resources>
     <string name="app_name">Doozby</string>
 
-    <!-- First Run, used to name the variable that will be used to detect first run-->
     <string name="first_run">firstRun</string>
-
-    <!-- Welcome Video URL -->
+    <string name="terms_and_conditions"> By proceeding you agree to the terms and conditions of this service</string>
     <string name="welcome_video_url">http://192.168.1.5/api/open-stream/BOJX10NQ8PF75JLOTFCRKQONT9W8SDQCPLM6QYUNJWDTS2CW3JU50XOAHT2DPIDP</string>
 </resources>

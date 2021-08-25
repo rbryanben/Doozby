@@ -3,31 +3,77 @@
     android:layout_width="match_parent"
     android:layout_height="match_parent"
     xmlns:app="http://schemas.android.com/apk/res-auto"
-    android:background="@color/orange"
-    android:backgroundTint="@color/black">
+    android:background="@color/dark_green">
 
-    <!-- Background Video Player //Starts Hidden -->
+    <!-- Background Video Player -->
     <SurfaceView
         android:id="@+id/welcomePageBackgroundSurfaceView"
         android:layout_width="match_parent"
         android:layout_height="match_parent"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toTopOf="parent"
-        android:visibility="visible" />
-
+        android:visibility="visible"
+        android:backgroundTint="@color/dark_green"/>
 
     <!-- Skip Button -->
     <TextView
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:text="Skip"
-        android:layout_marginRight="20dp"
-        android:layout_marginTop="50dp"
+        android:layout_marginRight="30dp"
+        android:layout_marginTop="60dp"
         android:textColor="@color/white"
         android:textStyle="bold"
         android:textSize="14dp"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintTop_toTopOf="parent" />
+
+    <!-- Terms and conditions -->
+    <TextView
+        android:id="@+id/textView2"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginBottom="40dp"
+        android:width="280dp"
+        android:alpha="0.7"
+        android:gravity="center"
+        android:text="@string/terms_and_conditions"
+        android:textColor="@color/white"
+        app:layout_constraintBottom_toTopOf="@+id/textView"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent" />
+
+    <!-- Create Account -->
+    <TextView
+        android:id="@+id/textView"
+        android:layout_width="280dp"
+        android:layout_height="60dp"
+        android:layout_marginBottom="20dp"
+        android:background="@drawable/login_button_background"
+        android:gravity="center"
+        android:text="Sign In"
+        android:textColor="@color/white"
+        android:textSize="14dp"
+        android:textStyle="bold"
+        app:layout_constraintBottom_toTopOf="@id/welcomePageCreateAccountTextView"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent" />
+
+    <!-- Sign in -->
+    <TextView
+        android:id="@+id/welcomePageCreateAccountTextView"
+        android:layout_width="280dp"
+        android:layout_height="60dp"
+        android:text="Create an Account"
+        android:background="@drawable/login_button_background"
+        android:layout_marginBottom="60dp"
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintEnd_toEndOf="parent"
+        android:gravity="center"
+        android:textColor="@color/white"
+        android:textStyle="bold"
+        android:textSize="14dp"
+        app:layout_constraintStart_toStartOf="parent" />
 
 
 </androidx.constraintlayout.widget.ConstraintLayout>

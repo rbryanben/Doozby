@@ -11,4 +11,7 @@
     <color name="light_orange">#D49A6A</color>
     <color name="white_orange">#FFD1AA</color>
     <color name="dark_green">#15150D</color>
+
+    <!-- Button Colors -->
+    <color name="login_button_transparent_gray">#6B373737</color>
 </resources>
