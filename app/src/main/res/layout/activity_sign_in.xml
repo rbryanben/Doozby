@@ -6,4 +6,12 @@
     android:layout_height="match_parent"
     tools:context=".SignInPage.SignInActivity">
 
+    <TextView
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:text="Sign In Activity"
+        android:gravity="center"/>
+
+
+
 </androidx.constraintlayout.widget.ConstraintLayout>
