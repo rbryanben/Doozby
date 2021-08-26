@@ -17,6 +17,8 @@
 
     <!-- Skip Button -->
     <TextView
+        android:id="@+id/welcomePageSkipTextView"
+        android:onClick="skipTextViewClicked"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:text="Skip"
@@ -30,7 +32,7 @@
 
     <!-- Terms and conditions -->
     <TextView
-        android:id="@+id/textView2"
+        android:id="@+id/welcomePageTermsTextView"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:layout_marginBottom="40dp"
@@ -39,24 +41,26 @@
         android:gravity="center"
         android:text="@string/terms_and_conditions"
         android:textColor="@color/white"
-        app:layout_constraintBottom_toTopOf="@+id/textView"
+        app:layout_constraintBottom_toTopOf="@+id/welcomePageSignInButton"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent" />
 
     <!-- Sign In -->
     <com.wapazock.doozby.CustomComponents.CircularTransparentButton
-        android:id="@+id/textView"
+        android:id="@+id/welcomePageSignInButton"
+        android:onClick="signInButtonClicked"
         android:layout_width="280dp"
         android:layout_height="60dp"
         android:layout_marginBottom="20dp"
-        app:layout_constraintBottom_toTopOf="@id/welcomePageCreateAccountTextView"
+        app:layout_constraintBottom_toTopOf="@id/welcomePageCreateAccountButton"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
         app:text="Sign In"/>
 
     <!-- Create An Account -->
     <com.wapazock.doozby.CustomComponents.CircularTransparentButton
-        android:id="@+id/welcomePageCreateAccountTextView"
+        android:id="@+id/welcomePageCreateAccountButton"
+        android:onClick="createAccountButtonClicked"
         android:layout_width="280dp"
         android:layout_height="60dp"
         android:layout_marginBottom="60dp"

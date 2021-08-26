@@ -1,22 +1,19 @@
 package com.wapazock.doozby.WelcomePage;
-import android.media.AudioAttributes;
-import android.media.AudioManager;
-import android.media.MediaPlayer;
-import android.net.Uri;
+import android.content.Intent;
 import android.os.Bundle;
-import android.util.Log;
 import android.view.SurfaceHolder;
 import android.view.SurfaceView;
 import android.view.View;
-import android.widget.VideoView;
 
 import androidx.annotation.NonNull;
 import androidx.annotation.Nullable;
 import androidx.appcompat.app.AppCompatActivity;
-import androidx.lifecycle.ViewModel;
 import androidx.lifecycle.ViewModelProvider;
 
+import com.wapazock.doozby.CreateAccountPage.CreateAccountActivity;
+import com.wapazock.doozby.MainActivity;
 import com.wapazock.doozby.R;
+import com.wapazock.doozby.SignInPage.SignInActivity;
 import com.wapazock.doozby.Utils.LayoutHelper;
 
 public class WelcomeActivity extends AppCompatActivity {
@@ -43,7 +40,10 @@ public class WelcomeActivity extends AppCompatActivity {
 
         // Bind video with the view model
         bindVideo();
+
     }
+
+
 
     // Make FullScreen : Sets the activity to become fullscreen with a translucent
     //                   status bar
@@ -76,6 +76,33 @@ public class WelcomeActivity extends AppCompatActivity {
 
             }
         });
+    }
+
+    // Skip Button Clicked : Triggered by the click of the skip button
+    //          On click - starts the MainActivity while clearing the backstack
+    public void skipTextViewClicked(View view) {
+        Intent mainActivityIntent = new Intent(this, MainActivity.class);
+        mainActivityIntent.addFlags(Intent.FLAG_ACTIVITY_CLEAR_TOP | Intent.FLAG_ACTIVITY_NEW_TASK);
+        WelcomeActivity.this.startActivity(mainActivityIntent);
+        WelcomeActivity.this.finish();
+    }
+
+    // Sign In Button Clicked : Triggered by the click of the sign in button
+    //          On click - starts the SignInActivity while clearing the backstack
+    public void signInButtonClicked(View view) {
+        Intent mainActivityIntent = new Intent(this, SignInActivity.class);
+        mainActivityIntent.addFlags(Intent.FLAG_ACTIVITY_CLEAR_TOP | Intent.FLAG_ACTIVITY_NEW_TASK);
+        WelcomeActivity.this.startActivity(mainActivityIntent);
+        WelcomeActivity.this.finish();
+    }
+
+    // Create Account Button Clicked : Triggered by the click of the create account button
+    //          On click - starts the CreateAccountActivity while clearing the backstack
+    public void createAccountButtonClicked(View view) {
+        Intent mainActivityIntent = new Intent(this, CreateAccountActivity.class);
+        mainActivityIntent.addFlags(Intent.FLAG_ACTIVITY_CLEAR_TOP | Intent.FLAG_ACTIVITY_NEW_TASK);
+        WelcomeActivity.this.startActivity(mainActivityIntent);
+        WelcomeActivity.this.finish();
     }
 
 
