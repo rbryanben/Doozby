@@ -8,11 +8,11 @@
         android:id="@+id/circularTransparentButtonTextView"
         android:layout_width="280dp"
         android:layout_height="60dp"
-        android:text="Create an Account"
         android:background="@drawable/login_button_background"
         android:gravity="center"
         android:textColor="@color/white"
         android:textStyle="bold"
-        android:textSize="14dp"/>
+        android:textSize="14dp"
+        android:clickable="true"/>
 
 </RelativeLayout>

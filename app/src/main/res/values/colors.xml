@@ -14,4 +14,5 @@
 
     <!-- Button Colors -->
     <color name="login_button_transparent_gray">#6B373737</color>
+    <color name="login_button_transparent_gray_lighter">#2D313230</color>
 </resources>
