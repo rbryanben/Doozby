@@ -58,6 +58,24 @@ public class BodyButton extends FrameLayout {
         if (text != null){
             buttonTextView.setText(text);
         }
+
+        // Set enabled
+        Boolean enabled = attributesArray.getBoolean(R.styleable.BodyButton_body_button_enabled,true);
+        buttonTextView.setEnabled(enabled);
     }
 
+    // Enable button
+    public void enableButton(){
+        buttonTextView.setEnabled(true);
+    }
+
+    // Disable button
+    public void disableButton(){
+        buttonTextView.setEnabled(false);
+    }
+
+    // Get Button
+    public TextView getButtonTextView() {
+        return buttonTextView;
+    }
 }

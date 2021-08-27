@@ -9,10 +9,12 @@
     <!-- Body Button -->
     <declare-styleable name="BodyButton">
         <attr name="body_button_text" format="string"/>
+        <attr name="body_button_enabled" format="boolean"/>
     </declare-styleable>
 
     <!-- Body Input -->
     <declare-styleable name="BodyInput">
         <attr name="body_input_hint" format="string"/>
+        <attr name="body_input_is_password" format="boolean"/>
     </declare-styleable>
 </resources>

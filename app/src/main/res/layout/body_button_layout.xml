@@ -14,6 +14,7 @@
         android:gravity="center"
         android:paddingLeft="10dp"
         android:clickable="true"
+        android:enabled="true"
         android:background="@drawable/body_button_background"/>
 
 </RelativeLayout>

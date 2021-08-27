@@ -13,7 +13,7 @@ import com.wapazock.doozby.R;
 
 public class Toasts {
 
-    // Show Silent Toast : Shows a silent toast in a layout
+    // Show Warning Silent Toast : Shows a silent toast in a layout, with an Amber background
     public static void showWarningSilentToast(String caption,Activity activity){
         LayoutInflater inflater = activity.getLayoutInflater();
         View inflateView = inflater.inflate(R.layout.silent_toast_layout, (ViewGroup) activity.findViewById(R.id.silentToastRoot));

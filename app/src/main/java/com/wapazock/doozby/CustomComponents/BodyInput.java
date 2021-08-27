@@ -2,6 +2,7 @@ package com.wapazock.doozby.CustomComponents;
 
 import android.content.Context;
 import android.content.res.TypedArray;
+import android.text.InputType;
 import android.util.AttributeSet;
 import android.widget.EditText;
 import android.widget.FrameLayout;
@@ -58,6 +59,10 @@ public class BodyInput extends FrameLayout {
         if (textHint != null){
             editText.setHint(textHint);
         }
+
+        // Password
+        Boolean isPassword = attributesArray.getBoolean(R.styleable.BodyInput_body_input_is_password,false);
+        editText.setInputType(InputType.TYPE_CLASS_TEXT | InputType.TYPE_TEXT_VARIATION_PASSWORD);
     }
 
 

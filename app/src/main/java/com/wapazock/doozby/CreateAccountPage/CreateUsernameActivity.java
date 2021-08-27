@@ -5,6 +5,7 @@ import androidx.lifecycle.Observer;
 import androidx.lifecycle.ViewModelProvider;
 
 import android.content.Context;
+import android.content.Intent;
 import android.os.Bundle;
 import android.text.Editable;
 import android.text.TextWatcher;
@@ -17,6 +18,7 @@ import android.view.ViewGroup;
 import android.widget.TextView;
 import android.widget.Toast;
 
+import com.wapazock.doozby.CustomComponents.BodyButton;
 import com.wapazock.doozby.CustomComponents.BodyInput;
 import com.wapazock.doozby.CustomComponents.Toasts;
 import com.wapazock.doozby.R;
@@ -30,6 +32,7 @@ public class CreateUsernameActivity extends AppCompatActivity {
 
     // View
     BodyInput usernameBodyInput;
+    BodyButton nextButton;
 
     // Variables
     CreateUsernameActivityViewModel activityViewModel ;
@@ -41,6 +44,7 @@ public class CreateUsernameActivity extends AppCompatActivity {
 
         // View
         usernameBodyInput = findViewById(R.id.activityCreateUsernameUsernameBodyInput);
+        nextButton = findViewById(R.id.activityCreateUsernameActivityNextBodyButton);
 
         // Set View Model
         activityViewModel = new ViewModelProvider(this).get(CreateUsernameActivityViewModel.class);
@@ -49,8 +53,29 @@ public class CreateUsernameActivity extends AppCompatActivity {
         // Bind Username Body Input with this class
         bindUsernameBodyInput();
 
+        // Bind Next Button
+        bindNextButton();
+
         // Bind Username errors with this class
         bindUsernameErrors();
+
+        // Bind Username Valid
+        bindUsernameValid();
+
+    }
+
+    // Bind Next Button : Sets a click listener on the next button
+    //      on click, starts a new activity
+    private void bindNextButton() {
+        nextButton.getButtonTextView().setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                // Start a new activity on click
+                Intent createPasswordIntent = new Intent(CreateUsernameActivity.this,CreatePasswordActivity.class);
+                createPasswordIntent.putExtra("username",usernameBodyInput.getEditText().getText().toString());
+                CreateUsernameActivity.this.startActivity(createPasswordIntent);
+            }
+        });
     }
 
     // Binds the username input with this class
@@ -61,7 +86,6 @@ public class CreateUsernameActivity extends AppCompatActivity {
         usernameBodyInput.getEditText().addTextChangedListener(new TextWatcher() {
             @Override
             public void beforeTextChanged(CharSequence s, int start, int count, int after) {
-
             }
 
             @Override
@@ -97,6 +121,22 @@ public class CreateUsernameActivity extends AppCompatActivity {
         });
     }
 
+    // Bind Valid Username : Observe if the username becomes valid
+    //      enable next button if valid
+    private void bindUsernameValid(){
+        activityViewModel.isValidUsername().observe(this, new Observer<Boolean>() {
+            @Override
+            public void onChanged(Boolean aBoolean) {
+                // If true enable the button, else disable it
+                if (aBoolean){
+                    nextButton.enableButton();
+                }
+                else {
+                    nextButton.disableButton();
+                }
+            }
+        });
+    }
 
 
 }

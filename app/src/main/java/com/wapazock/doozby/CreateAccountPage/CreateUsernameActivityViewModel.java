@@ -1,9 +1,13 @@
 package com.wapazock.doozby.CreateAccountPage;
 
+import android.content.Intent;
+import android.view.View;
+
 import androidx.lifecycle.LiveData;
 import androidx.lifecycle.MutableLiveData;
 import androidx.lifecycle.ViewModel;
 
+import com.wapazock.doozby.MainActivity;
 import com.wapazock.doozby.Repository.DoozbyRepository;
 import com.wapazock.doozby.Utils.CheckUsernameInterface;
 import com.wapazock.doozby.Utils.Codes;
@@ -11,14 +15,20 @@ import com.wapazock.doozby.Utils.Codes;
 public class CreateUsernameActivityViewModel extends ViewModel {
 
     // Variables
-    MutableLiveData<Codes> mUsernameResult;
+    private MutableLiveData<Codes> mUsernameErrorCode;
+    private MutableLiveData<Boolean> mUsernameValidUsername;
 
 
     // initialize view model
     private void init(){
         //initialize mUsernameResult
-        if (mUsernameResult == null){
-            mUsernameResult = new MutableLiveData<>();
+        if (mUsernameErrorCode == null){
+            mUsernameErrorCode = new MutableLiveData<>();
+        }
+
+        //initialize mUsernameValidUsername
+        if (mUsernameValidUsername == null){
+            mUsernameValidUsername = new MutableLiveData<>();
         }
     }
 
@@ -28,7 +38,7 @@ public class CreateUsernameActivityViewModel extends ViewModel {
         init();
 
         // return error
-        return mUsernameResult;
+        return mUsernameErrorCode;
     }
 
     // Submit Username Text : Receives text from the Username Input
@@ -46,12 +56,27 @@ public class CreateUsernameActivityViewModel extends ViewModel {
                         //Username taken
                         case USERNAME_TAKEN:
                             // Update that the username is taken
-                            mUsernameResult.postValue(Codes.USERNAME_TAKEN);
+                            mUsernameValidUsername.postValue(false);
+                            mUsernameErrorCode.postValue(Codes.USERNAME_TAKEN);
+                            break;
+                        case USERNAME_VALID:
+                            // Update the valid username value
+                            mUsernameValidUsername.postValue(true);
                             break;
                     }
                 }
             });
         }
+        // Username is shorter than 6 chars
+        else {
+            mUsernameValidUsername.postValue(false);
+        }
     }
 
+
+    // Get Valid Username : Returns True if the username is valid
+    public LiveData<Boolean> isValidUsername(){
+        init();
+        return mUsernameValidUsername;
+    }
 }
