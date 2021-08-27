@@ -4,17 +4,25 @@ import androidx.appcompat.app.AppCompatActivity;
 import androidx.lifecycle.Observer;
 import androidx.lifecycle.ViewModelProvider;
 
+import android.content.Context;
 import android.os.Bundle;
 import android.text.Editable;
 import android.text.TextWatcher;
 import android.util.Log;
+import android.view.Gravity;
 import android.view.KeyEvent;
+import android.view.LayoutInflater;
 import android.view.View;
+import android.view.ViewGroup;
+import android.widget.TextView;
 import android.widget.Toast;
 
 import com.wapazock.doozby.CustomComponents.BodyInput;
+import com.wapazock.doozby.CustomComponents.Toasts;
 import com.wapazock.doozby.R;
 import com.wapazock.doozby.Utils.Codes;
+
+import java.util.zip.Inflater;
 
 public class CreateUsernameActivity extends AppCompatActivity {
     // TAG
@@ -79,14 +87,16 @@ public class CreateUsernameActivity extends AppCompatActivity {
                 //Switch the codes
                 switch (codes){
                     case CONNECTION_ERROR:
-                        Toast.makeText(CreateUsernameActivity.this,"Network Error",Toast.LENGTH_SHORT).show();
+                        Toasts.showWarningSilentToast("Connection Error",CreateUsernameActivity.this);
                         break;
                     case USERNAME_TAKEN:
-                        Toast.makeText(CreateUsernameActivity.this,"Username Taken",Toast.LENGTH_SHORT).show();
+                        Toasts.showWarningSilentToast("Username Taken",CreateUsernameActivity.this);
                         break;
                 }
             }
         });
     }
+
+
 
 }

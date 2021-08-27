@@ -22,4 +22,7 @@
     <color name="white_ish">#424242</color>
     <color name="gray_ish">#DFDFDF</color>
 
+    <!-- Toast Colors -->>
+    <color name="amber">#FF8222</color>
+
 </resources>
