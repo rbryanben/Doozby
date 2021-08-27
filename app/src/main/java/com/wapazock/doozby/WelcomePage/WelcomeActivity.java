@@ -16,6 +16,8 @@ import com.wapazock.doozby.R;
 import com.wapazock.doozby.SignInPage.SignInActivity;
 import com.wapazock.doozby.Utils.LayoutHelper;
 
+import spencerstudios.com.bungeelib.Bungee;
+
 public class WelcomeActivity extends AppCompatActivity {
 
     // View
@@ -84,6 +86,7 @@ public class WelcomeActivity extends AppCompatActivity {
         Intent mainActivityIntent = new Intent(this, MainActivity.class);
         mainActivityIntent.addFlags(Intent.FLAG_ACTIVITY_CLEAR_TOP | Intent.FLAG_ACTIVITY_NEW_TASK);
         WelcomeActivity.this.startActivity(mainActivityIntent);
+        Bungee.slideLeft(WelcomeActivity.this);
         WelcomeActivity.this.finish();
     }
 
@@ -93,6 +96,7 @@ public class WelcomeActivity extends AppCompatActivity {
         Intent mainActivityIntent = new Intent(this, SignInActivity.class);
         mainActivityIntent.addFlags(Intent.FLAG_ACTIVITY_CLEAR_TOP | Intent.FLAG_ACTIVITY_NEW_TASK);
         WelcomeActivity.this.startActivity(mainActivityIntent);
+        Bungee.slideLeft(WelcomeActivity.this);
         WelcomeActivity.this.finish();
     }
 
@@ -102,6 +106,7 @@ public class WelcomeActivity extends AppCompatActivity {
         Intent mainActivityIntent = new Intent(this, CreateUsernameActivity.class);
         mainActivityIntent.addFlags(Intent.FLAG_ACTIVITY_CLEAR_TOP | Intent.FLAG_ACTIVITY_NEW_TASK);
         WelcomeActivity.this.startActivity(mainActivityIntent);
+        Bungee.slideLeft(WelcomeActivity.this);
         WelcomeActivity.this.finish();
     }
 

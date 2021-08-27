@@ -8,6 +8,7 @@ import android.preference.PreferenceManager;
 import androidx.annotation.Nullable;
 import androidx.appcompat.app.AppCompatActivity;
 
+import com.wapazock.doozby.GlobalApplication;
 import com.wapazock.doozby.MainActivity;
 import com.wapazock.doozby.R;
 import com.wapazock.doozby.WelcomePage.WelcomeActivity;
@@ -25,6 +26,7 @@ public class Splash extends AppCompatActivity {
         else {
             startActivity(new Intent(this, MainActivity.class));
         }
+
     }
 
     // Check First Run : Detects if its the first time to run the application

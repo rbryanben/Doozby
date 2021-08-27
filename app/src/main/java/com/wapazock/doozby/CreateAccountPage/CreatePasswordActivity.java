@@ -4,6 +4,7 @@ import androidx.appcompat.app.AppCompatActivity;
 import androidx.lifecycle.Observer;
 import androidx.lifecycle.ViewModelProvider;
 
+import android.content.Intent;
 import android.os.Bundle;
 import android.text.Editable;
 import android.text.TextWatcher;
@@ -12,7 +13,12 @@ import android.view.View;
 import com.wapazock.doozby.Classes.Credentials;
 import com.wapazock.doozby.CustomComponents.BodyButton;
 import com.wapazock.doozby.CustomComponents.BodyInput;
+import com.wapazock.doozby.CustomComponents.Toasts;
 import com.wapazock.doozby.R;
+import com.wapazock.doozby.Utils.Codes;
+
+import spencerstudios.com.bungeelib.Bungee;
+
 
 public class CreatePasswordActivity extends AppCompatActivity {
 
@@ -44,8 +50,33 @@ public class CreatePasswordActivity extends AppCompatActivity {
         // Watch for account created
         bindAccountCreated();
 
+        // Watch for error
+        bindErrors();
+
         // Bind Next Button
         bindNextButton();
+    }
+
+    // Bind Errors : Watches if an error occurred
+    //      creates a notification to notify the client
+    private void bindErrors() {
+        //watch errors
+        activityViewModel.errorOccurred().observe(this, new Observer<Codes>() {
+            @Override
+            public void onChanged(Codes codes) {
+                //stop loading
+                nextBodyButton.setLoading(false);
+
+                switch (codes){
+                    case CONNECTION_ERROR:
+                        Toasts.showWarningSilentToast("Connection Error",CreatePasswordActivity.this);
+                        break;
+                    case REQUEST_FAILED:
+                        Toasts.showWarningSilentToast("Server Error",CreatePasswordActivity.this);
+                        break;
+                }
+            }
+        });
     }
 
     // Bind Account Created : Watches if account is created
@@ -58,6 +89,12 @@ public class CreatePasswordActivity extends AppCompatActivity {
                 if (aBoolean){
                     nextBodyButton.setLoading(false);
                     //go to next activity
+                    Intent setupRecoveryAccountIntent = new Intent(CreatePasswordActivity.this,SetupRecoveryEmailActivity.class);
+                    setupRecoveryAccountIntent.setFlags(Intent.FLAG_ACTIVITY_CLEAR_TOP | Intent.FLAG_ACTIVITY_NEW_TASK);
+                    //start the activity
+                    CreatePasswordActivity.this.startActivity(setupRecoveryAccountIntent);
+                    Bungee.slideLeft(CreatePasswordActivity.this);
+                    CreatePasswordActivity.this.finish();
                 }
             }
         });

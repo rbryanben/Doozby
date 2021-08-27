@@ -14,6 +14,7 @@ public class CreatePasswordActivityViewModel extends ViewModel {
     // Variables
     private MutableLiveData<Boolean> mValidPassword;
     private MutableLiveData<Boolean> mAccountCreated;
+    private MutableLiveData<Codes> mError;
 
     //Initialization function
     private void init(){
@@ -25,6 +26,11 @@ public class CreatePasswordActivityViewModel extends ViewModel {
         //initialize mAccountCreated
         if (mAccountCreated == null){
             mAccountCreated = new MutableLiveData<>();
+        }
+
+        // initialize mError
+        if (mError == null){
+            mError = new MutableLiveData<>();
         }
     }
 
@@ -56,13 +62,26 @@ public class CreatePasswordActivityViewModel extends ViewModel {
         return mAccountCreated;
     }
 
+    // Error Created : Returns mutable
+    //      Usage : Connection error occurred
+    public LiveData<Codes> errorOccurred(){
+        init();
+        return mError;
+    }
+
     // Submit New Credentials : Receives new credentials to create an account with
     public void submitNewCredentials(Credentials credentials){
         DoozbyRepository.getInstance().createNewAccount(credentials, new CreateNewAccountInterface() {
             @Override
             public void createAccountResults(Boolean wasSuccessful, Codes result, String serverResponse) {
                 // If Successful update accountCreated live data
-                mAccountCreated.postValue(true);
+                if (wasSuccessful) {
+                    mAccountCreated.postValue(true);
+                }
+                // Else update error
+                else {
+                    mError.postValue(result);
+                }
             }
         });
     }

@@ -13,17 +13,19 @@
         android:theme="@style/Theme.Doozby"
         android:usesCleartextTraffic="true">
         <activity
-            android:name=".CreateAccountPage.CreateUsernameActivity"
-            android:theme="@style/Theme.Doozby">
+            android:name=".SplashScreen.Splash"
+            android:theme="@style/SplashTheme">
             <intent-filter>
                 <action android:name="android.intent.action.MAIN" />
-
                 <category android:name="android.intent.category.LAUNCHER" />
             </intent-filter>
         </activity>
-        <activity android:name=".CreateAccountPage.CreatePasswordActivity"/>
-        <activity android:name=".MainActivity" />
-
+        <activity android:name=".WelcomePage.WelcomeActivity"/>
+        <activity android:name=".CreateAccountPage.CreateUsernameActivity"/>
+        <activity android:name=".CreateAccountPage.CreatePasswordActivity" />
+        <activity android:name=".SignInPage.SignInActivity"/>
+        <activity android:name=".CreateAccountPage.SetupRecoveryEmailActivity"/>
+        <activity android:name=".MainActivity"/>
     </application>
 
 </manifest>

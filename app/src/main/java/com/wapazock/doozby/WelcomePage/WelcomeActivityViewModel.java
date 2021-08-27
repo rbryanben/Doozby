@@ -14,7 +14,7 @@ import com.wapazock.doozby.R;
 public class WelcomeActivityViewModel extends ViewModel {
 
     // Welcome Video URL
-    private String welcomeVideoURL = "http://192.168.1.5/api/open-stream/BOJX10NQ8PF75JLOTFCRKQONT9W8SDQCPLM6QYUNJWDTS2CW3JU50XOAHT2DPIDP";
+    private String welcomeVideoURL = "http://192.168.1.5/api/open-stream/VYTSBDW6DSNSYBZ3J0RV0T118ARB4Z1DDEASD226CS0N13ITHNIY2VYHGZVLJ9PE";
 
 
     // Variables

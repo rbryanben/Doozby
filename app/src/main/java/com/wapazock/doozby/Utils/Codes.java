@@ -6,4 +6,5 @@ public enum Codes {
     USERNAME_TAKEN,
     USERNAME_VALID,
     SUCCESS,
+    REQUEST_FAILED,
 }

@@ -28,6 +28,7 @@ import java.util.zip.Inflater;
 
 import spencerstudios.com.bungeelib.Bungee;
 
+
 public class CreateUsernameActivity extends AppCompatActivity {
     // TAG
     public static String TAG = "Create Username Activity";
