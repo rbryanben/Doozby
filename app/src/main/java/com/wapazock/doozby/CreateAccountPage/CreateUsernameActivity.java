@@ -26,6 +26,8 @@ import com.wapazock.doozby.Utils.Codes;
 
 import java.util.zip.Inflater;
 
+import spencerstudios.com.bungeelib.Bungee;
+
 public class CreateUsernameActivity extends AppCompatActivity {
     // TAG
     public static String TAG = "Create Username Activity";
@@ -74,6 +76,7 @@ public class CreateUsernameActivity extends AppCompatActivity {
                 Intent createPasswordIntent = new Intent(CreateUsernameActivity.this,CreatePasswordActivity.class);
                 createPasswordIntent.putExtra("username",usernameBodyInput.getEditText().getText().toString());
                 CreateUsernameActivity.this.startActivity(createPasswordIntent);
+                Bungee.slideLeft(CreateUsernameActivity.this);
             }
         });
     }

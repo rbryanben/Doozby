@@ -4,6 +4,7 @@ import android.content.Context;
 import android.content.res.TypedArray;
 import android.util.AttributeSet;
 import android.widget.FrameLayout;
+import android.widget.ProgressBar;
 import android.widget.TextView;
 
 import androidx.annotation.NonNull;
@@ -17,6 +18,11 @@ public class BodyButton extends FrameLayout {
 
     // View
     TextView buttonTextView;
+    ProgressBar buttonProgressBar;
+
+    // Variables
+    private String previousText;
+    private Boolean buttonIsLoading = false;
 
     public BodyButton(@NonNull Context context) {
         super(context);
@@ -39,6 +45,7 @@ public class BodyButton extends FrameLayout {
 
         // bind views
         buttonTextView = getRootView().findViewById(R.id.bodyButtonTextView);
+        buttonProgressBar = getRootView().findViewById(R.id.bodyButtonProgressBar);
 
         setAttributes(attrs);
     }
@@ -57,6 +64,7 @@ public class BodyButton extends FrameLayout {
         String text = attributesArray.getString(R.styleable.BodyButton_body_button_text);
         if (text != null){
             buttonTextView.setText(text);
+            previousText = text;
         }
 
         // Set enabled
@@ -66,6 +74,11 @@ public class BodyButton extends FrameLayout {
 
     // Enable button
     public void enableButton(){
+        //if button is loading don't do anything
+        if (buttonIsLoading){
+            return;
+        }
+
         buttonTextView.setEnabled(true);
     }
 
@@ -77,5 +90,26 @@ public class BodyButton extends FrameLayout {
     // Get Button
     public TextView getButtonTextView() {
         return buttonTextView;
+    }
+
+    // Set Loading State
+    public void setLoading(Boolean loading){
+        // Set Button Loading
+        if (loading){
+            buttonTextView.setText("");
+            buttonProgressBar.setVisibility(VISIBLE);
+            buttonTextView.setEnabled(false);
+
+            // Set Button is loading to prevent change re-enabling the button
+            buttonIsLoading = true;
+        }
+        else {
+            buttonTextView.setText(previousText);
+            buttonProgressBar.setVisibility(INVISIBLE);
+            buttonTextView.setEnabled(true);
+
+            // Set Button is loading to allow change disabling of button
+            buttonIsLoading = false;
+        }
     }
 }

@@ -45,24 +45,26 @@ public class BodyInput extends FrameLayout {
 
     // Binds the attributes with that of the view components
     private void setAttributes(AttributeSet attrs) {
-        if (attrs == null){
+        if (attrs == null) {
             return;
         }
 
 
         //add attributes into a typed array
-        TypedArray attributesArray = getContext().obtainStyledAttributes(attrs,R.styleable.BodyInput);
+        TypedArray attributesArray = getContext().obtainStyledAttributes(attrs, R.styleable.BodyInput);
 
         // Hint
         String textHint = attributesArray.getString(R.styleable.BodyInput_body_input_hint);
 
-        if (textHint != null){
+        if (textHint != null) {
             editText.setHint(textHint);
         }
 
         // Password
-        Boolean isPassword = attributesArray.getBoolean(R.styleable.BodyInput_body_input_is_password,false);
-        editText.setInputType(InputType.TYPE_CLASS_TEXT | InputType.TYPE_TEXT_VARIATION_PASSWORD);
+        Boolean isPassword = attributesArray.getBoolean(R.styleable.BodyInput_body_input_is_password, false);
+        if (isPassword) {
+            editText.setInputType(InputType.TYPE_CLASS_TEXT | InputType.TYPE_TEXT_VARIATION_PASSWORD);
+        }
     }
 
 

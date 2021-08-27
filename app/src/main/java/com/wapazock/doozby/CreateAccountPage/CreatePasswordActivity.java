@@ -7,7 +7,9 @@ import androidx.lifecycle.ViewModelProvider;
 import android.os.Bundle;
 import android.text.Editable;
 import android.text.TextWatcher;
+import android.view.View;
 
+import com.wapazock.doozby.Classes.Credentials;
 import com.wapazock.doozby.CustomComponents.BodyButton;
 import com.wapazock.doozby.CustomComponents.BodyInput;
 import com.wapazock.doozby.R;
@@ -38,6 +40,27 @@ public class CreatePasswordActivity extends AppCompatActivity {
 
         // Watch for valid password
         bindValidPassword();
+
+        // Watch for account created
+        bindAccountCreated();
+
+        // Bind Next Button
+        bindNextButton();
+    }
+
+    // Bind Account Created : Watches if account is created
+    //      if created, stops button loading and proceeds to the next acivity
+    private void bindAccountCreated() {
+        activityViewModel.accountCreated().observe(this, new Observer<Boolean>() {
+            @Override
+            public void onChanged(Boolean aBoolean) {
+                //If Created
+                if (aBoolean){
+                    nextBodyButton.setLoading(false);
+                    //go to next activity
+                }
+            }
+        });
     }
 
     // Bind Valid Password : Watches for a valid password
@@ -78,6 +101,29 @@ public class CreatePasswordActivity extends AppCompatActivity {
             @Override
             public void afterTextChanged(Editable s) {
 
+            }
+        });
+    }
+
+    // Bind Next Button
+    private void bindNextButton(){
+        nextBodyButton.getButtonTextView().setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                // Get username from extras
+                String username =CreatePasswordActivity.this.getIntent().getStringExtra("username");
+
+                //check that username is not null
+                if (username == null){ return; }
+
+                //create a Credentials object to create account with
+                Credentials newAccountCredentials = new Credentials(username,passwordBodyInput.getEditText().getText().toString());
+
+                //set the button to loading
+                nextBodyButton.setLoading(true);
+
+                //submit new credentials
+                activityViewModel.submitNewCredentials(newAccountCredentials);
             }
         });
     }

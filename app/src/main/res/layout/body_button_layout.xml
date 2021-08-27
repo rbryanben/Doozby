@@ -17,5 +17,12 @@
         android:enabled="true"
         android:background="@drawable/body_button_background"/>
 
+    <ProgressBar
+        android:id="@+id/bodyButtonProgressBar"
+        android:layout_width="30dp"
+        android:layout_height="30dp"
+        android:visibility="gone"
+        android:layout_centerInParent="true" />
+
 </RelativeLayout>
 

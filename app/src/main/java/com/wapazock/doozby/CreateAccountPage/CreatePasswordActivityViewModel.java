@@ -4,16 +4,27 @@ import androidx.lifecycle.LiveData;
 import androidx.lifecycle.MutableLiveData;
 import androidx.lifecycle.ViewModel;
 
+import com.wapazock.doozby.Classes.Credentials;
+import com.wapazock.doozby.Repository.DoozbyRepository;
+import com.wapazock.doozby.Utils.Codes;
+import com.wapazock.doozby.Utils.CreateNewAccountInterface;
+
 public class CreatePasswordActivityViewModel extends ViewModel {
 
     // Variables
     private MutableLiveData<Boolean> mValidPassword;
+    private MutableLiveData<Boolean> mAccountCreated;
 
     //Initialization function
     private void init(){
         //initialize mValidPassword
         if (mValidPassword == null){
             mValidPassword = new MutableLiveData<>();
+        }
+
+        //initialize mAccountCreated
+        if (mAccountCreated == null){
+            mAccountCreated = new MutableLiveData<>();
         }
     }
 
@@ -36,6 +47,24 @@ public class CreatePasswordActivityViewModel extends ViewModel {
     public LiveData<Boolean> validPassword(){
         init();
         return mValidPassword;
+    }
+
+    // Account Created : Returns Mutable
+    //      Usage : When the account creation is successful
+    public LiveData<Boolean> accountCreated(){
+        init();
+        return mAccountCreated;
+    }
+
+    // Submit New Credentials : Receives new credentials to create an account with
+    public void submitNewCredentials(Credentials credentials){
+        DoozbyRepository.getInstance().createNewAccount(credentials, new CreateNewAccountInterface() {
+            @Override
+            public void createAccountResults(Boolean wasSuccessful, Codes result, String serverResponse) {
+                // If Successful update accountCreated live data
+                mAccountCreated.postValue(true);
+            }
+        });
     }
 
 }

@@ -13,7 +13,7 @@
         android:theme="@style/Theme.Doozby"
         android:usesCleartextTraffic="true">
         <activity
-            android:name=".CreateAccountPage.CreatePasswordActivity"
+            android:name=".CreateAccountPage.CreateUsernameActivity"
             android:theme="@style/Theme.Doozby">
             <intent-filter>
                 <action android:name="android.intent.action.MAIN" />
@@ -21,6 +21,7 @@
                 <category android:name="android.intent.category.LAUNCHER" />
             </intent-filter>
         </activity>
+        <activity android:name=".CreateAccountPage.CreatePasswordActivity"/>
         <activity android:name=".MainActivity" />
 
     </application>

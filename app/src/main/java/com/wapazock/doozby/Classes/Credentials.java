@@ -1,15 +1,14 @@
 package com.wapazock.doozby.Classes;
 
-public class RegistrationCredentials {
+public class Credentials {
 
     // Variables
-    private String username, password, email ;
+    private String username, password ;
 
     //constructor
-    public RegistrationCredentials(String username, String password, String email) {
+    public Credentials(String username, String password) {
         this.username = username;
         this.password = password;
-        this.email = email;
     }
 
     // Methods
@@ -29,11 +28,4 @@ public class RegistrationCredentials {
         this.password = password;
     }
 
-    public String getEmail() {
-        return email;
-    }
-
-    public void setEmail(String email) {
-        this.email = email;
-    }
 }
