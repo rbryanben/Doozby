@@ -1,7 +1,18 @@
 <?xml version="1.0" encoding="utf-8"?>
 <resources>
+    <!-- Circular Transparent Button -->
     <declare-styleable name="CircularTransparentButton">
         <attr name="text" format="string"/>
         <attr name="animate" format="boolean"/>
+    </declare-styleable>
+
+    <!-- Body Button -->
+    <declare-styleable name="BodyButton">
+        <attr name="body_button_text" format="string"/>
+    </declare-styleable>
+
+    <!-- Body Input -->
+    <declare-styleable name="BodyInput">
+        <attr name="body_input_hint" format="string"/>
     </declare-styleable>
 </resources>

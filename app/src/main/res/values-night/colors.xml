@@ -8,7 +8,6 @@
     <color name="shade_orange">#552700</color>
     <color name="dark_orange">#804515</color>
     <color name="orange">#AA6C39</color>
-    <color name="orange_faded">#DDAA6C39</color>
     <color name="light_orange">#D49A6A</color>
     <color name="white_orange">#FFD1AA</color>
     <color name="dark_green">#15150D</color>
@@ -18,8 +17,7 @@
     <color name="login_button_transparent_gray_lighter">#2D313230</color>
 
     <!-- Text Colors -->
-    <color name="silver">#393939</color>
-    <color name="white_ish">#424242</color>
-    <color name="gray_ish">#DFDFDF</color>
-
+    <color name="silver">#C6C6C6</color>
+    <color name="white_ish">#F4F4F4</color>
+    <color name="gray_ish">#353535</color>
 </resources>

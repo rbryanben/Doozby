@@ -10,7 +10,7 @@ import androidx.annotation.Nullable;
 import androidx.appcompat.app.AppCompatActivity;
 import androidx.lifecycle.ViewModelProvider;
 
-import com.wapazock.doozby.CreateAccountPage.CreateAccountActivity;
+import com.wapazock.doozby.CreateAccountPage.CreateUsernameActivity;
 import com.wapazock.doozby.MainActivity;
 import com.wapazock.doozby.R;
 import com.wapazock.doozby.SignInPage.SignInActivity;
@@ -99,7 +99,7 @@ public class WelcomeActivity extends AppCompatActivity {
     // Create Account Button Clicked : Triggered by the click of the create account button
     //          On click - starts the CreateAccountActivity while clearing the backstack
     public void createAccountButtonClicked(View view) {
-        Intent mainActivityIntent = new Intent(this, CreateAccountActivity.class);
+        Intent mainActivityIntent = new Intent(this, CreateUsernameActivity.class);
         mainActivityIntent.addFlags(Intent.FLAG_ACTIVITY_CLEAR_TOP | Intent.FLAG_ACTIVITY_NEW_TASK);
         WelcomeActivity.this.startActivity(mainActivityIntent);
         WelcomeActivity.this.finish();

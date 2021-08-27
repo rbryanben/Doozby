@@ -12,10 +12,8 @@
         android:supportsRtl="true"
         android:theme="@style/Theme.Doozby"
         android:usesCleartextTraffic="true">
-        <activity android:name=".CreateAccountPage.CreateAccountActivity"></activity>
-        <activity android:name=".SignInPage.SignInActivity" />
         <activity
-            android:name=".WelcomePage.WelcomeActivity"
+            android:name=".CreateAccountPage.CreateUsernameActivity"
             android:theme="@style/Theme.Doozby">
             <intent-filter>
                 <action android:name="android.intent.action.MAIN" />
