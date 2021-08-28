@@ -112,6 +112,9 @@ public class CreateUsernameActivity extends AppCompatActivity {
         activityViewModel.getUsernameError().observe(this, new Observer<Codes>() {
             @Override
             public void onChanged(Codes codes) {
+                // Disable next button
+                nextButton.getButtonTextView().setEnabled(false);
+
                 //Switch the codes
                 switch (codes){
                     case CONNECTION_ERROR:
@@ -142,5 +145,23 @@ public class CreateUsernameActivity extends AppCompatActivity {
         });
     }
 
+    // Activity Stopped -- alert view model
+    @Override
+    protected void onStop() {
+        super.onStop();
+        activityViewModel.activityStopped();
+    }
 
+    // Activity Paused -- alert view model
+    @Override
+    protected void onPause() {
+        super.onPause();
+        activityViewModel.activityStopped();
+    }
+
+    @Override
+    protected void onResume() {
+        super.onResume();
+        activityViewModel.activityResumed();
+    }
 }

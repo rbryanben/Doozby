@@ -1,20 +1,31 @@
 package com.wapazock.doozby.CreateAccountPage;
 
+import android.app.Application;
+import android.content.Context;
+import android.content.SharedPreferences;
+
+import androidx.annotation.NonNull;
+import androidx.lifecycle.AndroidViewModel;
 import androidx.lifecycle.LiveData;
 import androidx.lifecycle.MutableLiveData;
-import androidx.lifecycle.ViewModel;
 
 import com.wapazock.doozby.Classes.Credentials;
 import com.wapazock.doozby.Repository.DoozbyRepository;
 import com.wapazock.doozby.Utils.Codes;
 import com.wapazock.doozby.Utils.CreateNewAccountInterface;
 
-public class CreatePasswordActivityViewModel extends ViewModel {
+import org.jetbrains.annotations.NotNull;
+
+public class CreatePasswordActivityViewModel extends AndroidViewModel {
 
     // Variables
     private MutableLiveData<Boolean> mValidPassword;
     private MutableLiveData<Boolean> mAccountCreated;
     private MutableLiveData<Codes> mError;
+
+    public CreatePasswordActivityViewModel(@NonNull @NotNull Application application) {
+        super(application);
+    }
 
     //Initialization function
     private void init(){
@@ -77,6 +88,12 @@ public class CreatePasswordActivityViewModel extends ViewModel {
                 // If Successful update accountCreated live data
                 if (wasSuccessful) {
                     mAccountCreated.postValue(true);
+
+                    // Store the token in Shared Preferences
+                    SharedPreferences preferences = getApplication().getSharedPreferences("CREDENTIALS", Context.MODE_PRIVATE);
+                    SharedPreferences.Editor editor = preferences.edit();
+                    editor.putString("TOKEN",serverResponse);
+                    editor.apply();
                 }
                 // Else update error
                 else {

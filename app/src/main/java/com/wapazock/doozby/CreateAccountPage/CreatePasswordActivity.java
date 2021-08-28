@@ -14,6 +14,7 @@ import com.wapazock.doozby.Classes.Credentials;
 import com.wapazock.doozby.CustomComponents.BodyButton;
 import com.wapazock.doozby.CustomComponents.BodyInput;
 import com.wapazock.doozby.CustomComponents.Toasts;
+import com.wapazock.doozby.MainActivity;
 import com.wapazock.doozby.R;
 import com.wapazock.doozby.Utils.Codes;
 
@@ -89,10 +90,10 @@ public class CreatePasswordActivity extends AppCompatActivity {
                 if (aBoolean){
                     nextBodyButton.setLoading(false);
                     //go to next activity
-                    Intent setupRecoveryAccountIntent = new Intent(CreatePasswordActivity.this,SetupRecoveryEmailActivity.class);
-                    setupRecoveryAccountIntent.setFlags(Intent.FLAG_ACTIVITY_CLEAR_TOP | Intent.FLAG_ACTIVITY_NEW_TASK);
+                    Intent mainActivityIntent = new Intent(CreatePasswordActivity.this, MainActivity.class);
+                    mainActivityIntent.setFlags(Intent.FLAG_ACTIVITY_CLEAR_TOP | Intent.FLAG_ACTIVITY_NEW_TASK);
                     //start the activity
-                    CreatePasswordActivity.this.startActivity(setupRecoveryAccountIntent);
+                    CreatePasswordActivity.this.startActivity(mainActivityIntent);
                     Bungee.slideLeft(CreatePasswordActivity.this);
                     CreatePasswordActivity.this.finish();
                 }
@@ -122,6 +123,9 @@ public class CreatePasswordActivity extends AppCompatActivity {
     //      when the client enters a word, submits the password for checking in the
     //      view model
     private void bindPasswordInput() {
+        // Request Focus
+        passwordBodyInput.requestFocus();
+
         // Set on text changed listener
         passwordBodyInput.getEditText().addTextChangedListener(new TextWatcher() {
             @Override

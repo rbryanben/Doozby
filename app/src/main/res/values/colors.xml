@@ -24,6 +24,9 @@
     <color name="gray_ish">#DFDFDF</color>
 
     <!-- Toast Colors -->>
-    <color name="amber">#FF8222</color>
+    <color name="amber">#59FF7903</color>
+
+    <!-- Shapes -->
+    <color name="online">#2BBA2B</color>
 
 </resources>

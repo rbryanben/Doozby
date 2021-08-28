@@ -20,27 +20,26 @@ public class Splash extends AppCompatActivity {
         super.onCreate(savedInstanceState);
 
         //check first run
-        if (isFirstRun()) {
-            startActivity(new Intent(this, WelcomeActivity.class));
+        if (hasToken()) {
+            startActivity(new Intent(this, MainActivity.class));
+            finish();
         }
         else {
-            startActivity(new Intent(this, MainActivity.class));
+            startActivity(new Intent(this, WelcomeActivity.class));
+            finish();
         }
 
     }
 
-    // Check First Run : Detects if its the first time to run the application
-    //     If it is, then launch the Welcome activity
-    private Boolean isFirstRun() {
-        SharedPreferences prefs = PreferenceManager.getDefaultSharedPreferences(getBaseContext());
-        boolean previouslyStarted = prefs.getBoolean(getString(R.string.first_run), false);
-        if(!previouslyStarted) {
-            SharedPreferences.Editor edit = prefs.edit();
-            edit.putBoolean(getString(R.string.first_run), Boolean.TRUE);
-            edit.commit();
-            return true ;
+    // Has Token : Checks if the user is signed in,
+    //      it does this by checking if there is an active token in the shared preferences
+    private Boolean hasToken(){
+        //Shared preferences
+        SharedPreferences preferences = getSharedPreferences("CREDENTIALS",MODE_PRIVATE);
+        String TOKEN = preferences.getString("TOKEN",null);
+        if (TOKEN == null){
+            return false;
         }
-
-        return false;
+        return true;
     }
 }

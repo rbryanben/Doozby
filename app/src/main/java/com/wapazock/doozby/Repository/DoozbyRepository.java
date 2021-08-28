@@ -4,6 +4,8 @@ import android.content.Context;
 import android.os.Looper;
 import android.util.Log;
 
+import androidx.lifecycle.LiveData;
+
 import com.wapazock.doozby.Classes.Credentials;
 import com.wapazock.doozby.GlobalApplication;
 import com.wapazock.doozby.Utils.CheckUsernameInterface;
@@ -26,7 +28,8 @@ import okhttp3.Response;
 
 public class DoozbyRepository {
     // Routes
-    private static String serverURL = "http://192.168.1.5:9000";
+    private static String serverDomain = "192.168.1.5:9000";
+    private static String serverURL = "http://" + serverDomain ;
     private static String accountsURL = serverURL + "/api/accounts/";
 
     // Static Variables
@@ -39,25 +42,6 @@ public class DoozbyRepository {
             instance = new DoozbyRepository();
         }
         return instance;
-    }
-
-    //Check Username : Checks if the username is taken from the
-    //        server
-    public void checkUsernameExists(String username, CheckUsernameInterface checkUsernameInterface){
-        //dummy list
-        ArrayList<String> takenUsernames = new ArrayList<String>();
-        takenUsernames.add("rbryanben");
-        takenUsernames.add("michael");
-        takenUsernames.add("trevor");
-        takenUsernames.add("franklin");
-
-        // check if username is in the array
-        if (takenUsernames.contains(username)){
-            checkUsernameInterface.checkUsernameResult(Codes.USERNAME_TAKEN);
-        }
-        else {
-            checkUsernameInterface.checkUsernameResult(Codes.USERNAME_VALID);
-        }
     }
 
 
@@ -107,5 +91,12 @@ public class DoozbyRepository {
 
             }
         });
+    }
+
+
+    // methods
+
+    public static String getServerDomain() {
+        return serverDomain;
     }
 }
