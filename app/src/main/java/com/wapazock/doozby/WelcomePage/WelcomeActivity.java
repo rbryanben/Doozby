@@ -11,7 +11,7 @@ import androidx.appcompat.app.AppCompatActivity;
 import androidx.lifecycle.ViewModelProvider;
 
 import com.wapazock.doozby.CreateAccountPage.CreateUsernameActivity;
-import com.wapazock.doozby.MainActivity;
+import com.wapazock.doozby.HomeActivity.HomeActivity;
 import com.wapazock.doozby.R;
 import com.wapazock.doozby.SignInPage.SignInActivity;
 import com.wapazock.doozby.Utils.LayoutHelper;
@@ -83,7 +83,7 @@ public class WelcomeActivity extends AppCompatActivity {
     // Skip Button Clicked : Triggered by the click of the skip button
     //          On click - starts the MainActivity while clearing the backstack
     public void skipTextViewClicked(View view) {
-        Intent mainActivityIntent = new Intent(this, MainActivity.class);
+        Intent mainActivityIntent = new Intent(this, HomeActivity.class);
         mainActivityIntent.addFlags(Intent.FLAG_ACTIVITY_CLEAR_TOP | Intent.FLAG_ACTIVITY_NEW_TASK);
         WelcomeActivity.this.startActivity(mainActivityIntent);
         Bungee.slideLeft(WelcomeActivity.this);

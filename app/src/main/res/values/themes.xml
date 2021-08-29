@@ -29,4 +29,11 @@
     <style name="Theme.Doozby.AppBarOverlay" parent="ThemeOverlay.AppCompat.Dark.ActionBar" />
 
     <style name="Theme.Doozby.PopupOverlay" parent="ThemeOverlay.AppCompat.Light" />
+
+
+    <!-- No Animation Style -->
+    <style name="noAnimTheme" parent="android:Theme">
+        <item name="android:windowAnimationStyle">@null</item>
+    </style>
+
 </resources>

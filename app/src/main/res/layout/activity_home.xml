@@ -1,0 +1,66 @@
+<?xml version="1.0" encoding="utf-8"?>
+<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    tools:context=".HomeActivity.HomeActivity">
+
+    <!-- Toolbar -->
+    <FrameLayout
+        android:id="@+id/homeActivityToolbar"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content">
+        <!-- Component -->
+        <include layout="@layout/component_toolbar"/>
+    </FrameLayout>
+
+    <!-- Coordinator Layout -->
+    <androidx.coordinatorlayout.widget.CoordinatorLayout
+        android:id="@+id/homeActivityCoordinatorLayout"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_below="@id/homeActivityToolbar"
+        android:layout_above="@id/homeActivityBottomNavigationView">
+
+        <!-- App Bar - Collapsing -->
+        <com.google.android.material.appbar.AppBarLayout
+            android:id="@+id/homeActivityAppBarLayout"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:gravity="center"
+            android:background="@color/black">
+
+            <!-- Tabbed Layout -->
+            <com.google.android.material.tabs.TabLayout
+                android:id="@+id/homeActivityTabLayout"
+                android:layout_width="200dp"
+                app:tabSelectedTextColor="@color/silver"
+                android:layout_height="wrap_content"
+                android:background="@color/black"
+                app:layout_scrollFlags="scroll|enterAlways|snap"/>
+
+        </com.google.android.material.appbar.AppBarLayout>
+
+
+
+        <!-- View Pager -->
+        <androidx.viewpager.widget.ViewPager
+            android:id="@+id/homeActivityViewPager"
+            android:layout_width="match_parent"
+            android:layout_height="match_parent" />
+
+        <!-- End Of Coordinator Layout -->
+    </androidx.coordinatorlayout.widget.CoordinatorLayout>
+
+    <!-- Bottom Navigation View -->
+    <com.google.android.material.bottomnavigation.BottomNavigationView
+        android:id="@+id/homeActivityBottomNavigationView"
+        android:layout_width="match_parent"
+        android:layout_height="70dp"
+        android:layout_alignParentBottom="true"
+        app:menu="@menu/main_menu"
+        app:labelVisibilityMode="labeled"
+        app:itemIconSize="25dp"/>
+
+</RelativeLayout>

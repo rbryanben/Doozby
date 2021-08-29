@@ -1,4 +1,4 @@
-package com.wapazock.doozby.MainActivityFragments;
+package com.wapazock.doozby.HomeActivity.HomeActivityFragments;
 
 import android.os.Bundle;
 import android.view.LayoutInflater;
@@ -13,11 +13,11 @@ import com.wapazock.doozby.R;
 
 import org.jetbrains.annotations.NotNull;
 
-public class TrendingFragment extends Fragment {
+public class ForYouFragment extends Fragment {
     @Nullable
     @org.jetbrains.annotations.Nullable
     @Override
     public View onCreateView(@NonNull @NotNull LayoutInflater inflater, @Nullable @org.jetbrains.annotations.Nullable ViewGroup container, @Nullable @org.jetbrains.annotations.Nullable Bundle savedInstanceState) {
-        return inflater.inflate(R.layout.main_activity_trending_fragment,container,false);
+        return inflater.inflate(R.layout.for_you_fragment,container,false);
     }
 }

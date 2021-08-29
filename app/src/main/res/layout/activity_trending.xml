@@ -1,0 +1,46 @@
+<?xml version="1.0" encoding="utf-8"?>
+<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    xmlns:app="http://schemas.android.com/apk/res-auto">
+
+    <!-- Toolbar -->
+    <FrameLayout
+        android:id="@+id/trendingActivityToolbar"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content">
+        <!-- Component -->
+        <include layout="@layout/component_toolbar"/>
+    </FrameLayout>
+
+    <!-- Coordinator Layout -->
+    <androidx.coordinatorlayout.widget.CoordinatorLayout
+        android:id="@+id/trendingActivityCoordinatorLayout"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_below="@id/trendingActivityToolbar"
+        android:layout_above="@id/trendingActivityBottomNavigationView">
+
+        <!-- View Pager -->
+        <TextView
+            android:id="@+id/trendingActivityViewPager"
+            android:layout_width="match_parent"
+            android:layout_height="match_parent"
+            android:text="Trending"
+            android:gravity="center"/>
+
+        <!-- End Of Coordinator Layout -->
+    </androidx.coordinatorlayout.widget.CoordinatorLayout>
+
+    <!-- Bottom Navigation View -->
+    <com.google.android.material.bottomnavigation.BottomNavigationView
+        android:id="@+id/trendingActivityBottomNavigationView"
+        android:layout_width="match_parent"
+        android:layout_height="70dp"
+        android:layout_alignParentBottom="true"
+        app:menu="@menu/main_menu"
+        app:labelVisibilityMode="labeled"
+        app:itemIconSize="25dp"/>
+
+
+</RelativeLayout>

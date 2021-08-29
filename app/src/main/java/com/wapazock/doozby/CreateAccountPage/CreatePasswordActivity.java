@@ -14,7 +14,7 @@ import com.wapazock.doozby.Classes.Credentials;
 import com.wapazock.doozby.CustomComponents.BodyButton;
 import com.wapazock.doozby.CustomComponents.BodyInput;
 import com.wapazock.doozby.CustomComponents.Toasts;
-import com.wapazock.doozby.MainActivity;
+import com.wapazock.doozby.HomeActivity.HomeActivity;
 import com.wapazock.doozby.R;
 import com.wapazock.doozby.Utils.Codes;
 
@@ -90,7 +90,7 @@ public class CreatePasswordActivity extends AppCompatActivity {
                 if (aBoolean){
                     nextBodyButton.setLoading(false);
                     //go to next activity
-                    Intent mainActivityIntent = new Intent(CreatePasswordActivity.this, MainActivity.class);
+                    Intent mainActivityIntent = new Intent(CreatePasswordActivity.this, HomeActivity.class);
                     mainActivityIntent.setFlags(Intent.FLAG_ACTIVITY_CLEAR_TOP | Intent.FLAG_ACTIVITY_NEW_TASK);
                     //start the activity
                     CreatePasswordActivity.this.startActivity(mainActivityIntent);

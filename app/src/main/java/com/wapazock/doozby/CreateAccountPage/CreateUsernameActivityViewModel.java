@@ -1,24 +1,18 @@
 package com.wapazock.doozby.CreateAccountPage;
 
-import android.content.Intent;
 import android.os.Looper;
-import android.view.View;
 
 import androidx.lifecycle.LiveData;
 import androidx.lifecycle.MutableLiveData;
 import androidx.lifecycle.ViewModel;
 
-import com.wapazock.doozby.MainActivity;
 import com.wapazock.doozby.Repository.DoozbyRepository;
-import com.wapazock.doozby.Utils.CheckUsernameInterface;
 import com.wapazock.doozby.Utils.Codes;
 
 import org.jetbrains.annotations.NotNull;
 import org.jetbrains.annotations.Nullable;
 import org.json.JSONException;
 import org.json.JSONObject;
-
-import java.util.logging.Handler;
 
 import okhttp3.OkHttpClient;
 import okhttp3.Request;

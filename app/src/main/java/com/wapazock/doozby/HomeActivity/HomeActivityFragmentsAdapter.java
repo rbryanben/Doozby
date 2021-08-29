@@ -1,29 +1,22 @@
-package com.wapazock.doozby.MainActivityFragments.HomeFragmentFragments;
+package com.wapazock.doozby.HomeActivity;
 
 import android.content.Context;
 
 import androidx.annotation.NonNull;
 import androidx.fragment.app.Fragment;
-import androidx.fragment.app.FragmentActivity;
 import androidx.fragment.app.FragmentManager;
-import androidx.fragment.app.FragmentPagerAdapter;
 import androidx.fragment.app.FragmentStatePagerAdapter;
-import androidx.lifecycle.Lifecycle;
-import androidx.recyclerview.widget.RecyclerView;
-import androidx.viewpager2.adapter.FragmentStateAdapter;
-
-import com.wapazock.doozby.MainActivityFragments.HomeFragment;
 
 import org.jetbrains.annotations.NotNull;
 
 import java.util.ArrayList;
 
-public class HomeFragmentsAdapter extends FragmentStatePagerAdapter {
+public class HomeActivityFragmentsAdapter extends FragmentStatePagerAdapter {
 
     ArrayList<Fragment> FRAGMENTS;
     Context CONTEXT;
 
-    public HomeFragmentsAdapter(@NonNull @NotNull FragmentManager fm, ArrayList<Fragment> FRAGMENTS, HomeFragment CONTEXT) {
+    public HomeActivityFragmentsAdapter(@NonNull @NotNull FragmentManager fm, ArrayList<Fragment> FRAGMENTS, Context context) {
         super(fm);
         this.FRAGMENTS = FRAGMENTS;
     }

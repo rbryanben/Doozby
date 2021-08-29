@@ -3,14 +3,11 @@ package com.wapazock.doozby.SplashScreen;
 import android.content.Intent;
 import android.content.SharedPreferences;
 import android.os.Bundle;
-import android.preference.PreferenceManager;
 
 import androidx.annotation.Nullable;
 import androidx.appcompat.app.AppCompatActivity;
 
-import com.wapazock.doozby.GlobalApplication;
-import com.wapazock.doozby.MainActivity;
-import com.wapazock.doozby.R;
+import com.wapazock.doozby.HomeActivity.HomeActivity;
 import com.wapazock.doozby.WelcomePage.WelcomeActivity;
 
 public class Splash extends AppCompatActivity {
@@ -21,7 +18,7 @@ public class Splash extends AppCompatActivity {
 
         //check first run
         if (hasToken()) {
-            startActivity(new Intent(this, MainActivity.class));
+            startActivity(new Intent(this, HomeActivity.class));
             finish();
         }
         else {

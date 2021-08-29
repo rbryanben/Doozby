@@ -24,7 +24,11 @@
         <activity android:name=".CreateAccountPage.CreateUsernameActivity"/>
         <activity android:name=".CreateAccountPage.CreatePasswordActivity" />
         <activity android:name=".SignInPage.SignInActivity"/>
-        <activity android:name=".MainActivity"/>
+        <activity android:name=".HomeActivity.HomeActivity" />
+        <activity android:name=".TrendingActivity.TrendingActivity"/>
+        <activity android:name=".PostActivity.PostActivity"/>
+        <activity android:name=".AccountActivity.AccountActivity"/>
+
     </application>
 
 </manifest>
