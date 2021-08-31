@@ -20,6 +20,7 @@
     <color name="button_disabled">#5BAA6C39</color>
 
     <!-- Text Colors -->
+    <color name="text_header">#404040</color>
     <color name="silver">#393939</color>
     <color name="white_ish">#424242</color>
     <color name="gray_ish">#DFDFDF</color>
@@ -32,5 +33,8 @@
 
     <!-- panels -->
     <color name="toolBarColor">#F4F4F4</color>
+
+    <!-- fade color -->
+    <color name="fadeColor">#ffffff</color>
 
 </resources>

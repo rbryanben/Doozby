@@ -1,0 +1,35 @@
+<?xml version="1.0" encoding="utf-8"?>
+<androidx.constraintlayout.widget.ConstraintLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    android:id="@+id/dstvButtonRootView"
+    android:layout_width="134dp"
+    android:layout_height="50dp"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    app:layout_constraintTop_toBottomOf="@id/movieDetailsActivityNameTextView"
+    app:layout_constraintStart_toStartOf="parent"
+    android:background="@drawable/dstv_button_background">
+
+
+        <!-- Play Icon  -->
+        <ImageView
+            android:id="@+id/dstvButtonImageView"
+            android:layout_width="30dp"
+            android:layout_height="30dp"
+            android:layout_marginLeft="10dp"
+            android:src="@drawable/ic_play"
+            app:layout_constraintBottom_toBottomOf="parent"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toTopOf="parent" />
+
+        <TextView
+            android:id="@+id/dstvButtonTextView"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="Watch Movie"
+            android:textColor="@color/gray_ish"
+            android:layout_marginLeft="5dp"
+            app:layout_constraintBottom_toBottomOf="parent"
+            app:layout_constraintStart_toEndOf="@+id/dstvButtonImageView"
+            app:layout_constraintTop_toTopOf="parent" />
+
+
+</androidx.constraintlayout.widget.ConstraintLayout>

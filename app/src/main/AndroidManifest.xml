@@ -12,11 +12,10 @@
         android:supportsRtl="true"
         android:theme="@style/Theme.Doozby"
         android:usesCleartextTraffic="true">
-        <activity android:name=".MovieDetails.MovieDetailsActivity"></activity>
         <activity
-            android:name=".SplashScreen.Splash"
+            android:name=".MovieDetails.MovieDetailsActivity"
             android:icon="@mipmap/ic_launcher"
-            android:theme="@style/SplashTheme">
+            android:theme="@style/Theme.Doozby">
             <intent-filter>
                 <action android:name="android.intent.action.MAIN" />
 

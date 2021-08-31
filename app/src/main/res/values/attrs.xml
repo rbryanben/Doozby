@@ -17,4 +17,10 @@
         <attr name="body_input_hint" format="string"/>
         <attr name="body_input_is_password" format="boolean"/>
     </declare-styleable>
+
+    <!-- DSTV Button -->
+    <declare-styleable name="DSTVButton">
+        <attr name="dstv_button_text" format="string"/>
+        <attr name="dstv_button_icon" format="integer"/>
+    </declare-styleable>
 </resources>

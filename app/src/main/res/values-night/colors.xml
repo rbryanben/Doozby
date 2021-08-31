@@ -17,10 +17,14 @@
     <color name="login_button_transparent_gray_lighter">#2D313230</color>
 
     <!-- Text Colors -->
+    <color name="text_header">#D1D1D1</color>
     <color name="silver">#C6C6C6</color>
     <color name="white_ish">#F4F4F4</color>
     <color name="gray_ish">#353535</color>
 
     <!-- panel colors -->
     <color name="toolBarColor">#323232</color>
+
+    <!-- fade color -->
+    <color name="fadeColor">#000000</color>
 </resources>
