@@ -71,7 +71,7 @@ public class RecyclerViewAllContentAdapter extends RecyclerView.Adapter<Recycler
         android.os.Handler retryHandler = new android.os.Handler();
 
         WinterstoreImagesLoaders imageLoader = new WinterstoreImagesLoaders(DoozbyRepository.getStorageTOKEN(),CONTEXT);
-        imageLoader.loadImage(holder.movieImage, currentMovie.getCoverImageID(), R.drawable.plain_black_background, new WinterstoreImagesLoaders.ImageLoaderInterface() {
+        imageLoader.loadImageAndCache(holder.movieImage, currentMovie.getCoverImageID(), R.drawable.plain_black_background, new WinterstoreImagesLoaders.ImageLoaderInterface() {
             @Override
             public void result(Boolean wasSuccessful, String imageID) {
                 if (!wasSuccessful){

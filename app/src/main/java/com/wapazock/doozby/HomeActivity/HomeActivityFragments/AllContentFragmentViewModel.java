@@ -9,6 +9,8 @@ import androidx.lifecycle.LiveData;
 import androidx.lifecycle.MutableLiveData;
 
 import com.wapazock.doozby.Classes.Movie;
+import com.wapazock.doozby.Repository.DoozbyRepository;
+import com.wapazock.doozby.Repository.GetMoviesInterface;
 import com.wapazock.doozby.Utils.Codes;
 
 import org.jetbrains.annotations.NotNull;
@@ -34,6 +36,19 @@ public class AllContentFragmentViewModel extends AndroidViewModel {
         if (mMovies == null){
             mMovies = new MutableLiveData<>();
             // Get movies
+            DoozbyRepository.getInstance().getMovies(0, new GetMoviesInterface() {
+                @Override
+                public void result(Boolean wasSuccessful, Codes code, ArrayList<Movie> MOVIES) {
+                    // Join the 2 arrays
+                    if (wasSuccessful){
+                        MOVIES_LIST.addAll(MOVIES);
+                        mMovies.postValue(MOVIES);
+                        return;
+                    }
+                    // An error occurred
+                    mErrors.postValue(code);
+                }
+            });
         }
 
         // initialize mErrors
@@ -61,6 +76,5 @@ public class AllContentFragmentViewModel extends AndroidViewModel {
         //return errors
         return mErrors;
     }
-
 
 }

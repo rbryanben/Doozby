@@ -12,24 +12,25 @@
         android:supportsRtl="true"
         android:theme="@style/Theme.Doozby"
         android:usesCleartextTraffic="true">
+        <activity android:name=".MovieDetails.MovieDetailsActivity"></activity>
         <activity
             android:name=".SplashScreen.Splash"
-            android:theme="@style/SplashTheme"
-            android:icon="@mipmap/ic_launcher">
+            android:icon="@mipmap/ic_launcher"
+            android:theme="@style/SplashTheme">
             <intent-filter>
                 <action android:name="android.intent.action.MAIN" />
+
                 <category android:name="android.intent.category.LAUNCHER" />
             </intent-filter>
         </activity>
-        <activity android:name=".WelcomePage.WelcomeActivity"/>
-        <activity android:name=".CreateAccountPage.CreateUsernameActivity"/>
+        <activity android:name=".WelcomePage.WelcomeActivity" />
+        <activity android:name=".CreateAccountPage.CreateUsernameActivity" />
         <activity android:name=".CreateAccountPage.CreatePasswordActivity" />
-        <activity android:name=".SignInPage.SignInActivity"/>
+        <activity android:name=".SignInPage.SignInActivity" />
         <activity android:name=".HomeActivity.HomeActivity" />
-        <activity android:name=".TrendingActivity.TrendingActivity"/>
-        <activity android:name=".PostActivity.PostActivity"/>
-        <activity android:name=".AccountActivity.AccountActivity"/>
-
+        <activity android:name=".TrendingActivity.TrendingActivity" />
+        <activity android:name=".PostActivity.PostActivity" />
+        <activity android:name=".AccountActivity.AccountActivity" />
     </application>
 
 </manifest>

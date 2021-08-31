@@ -10,6 +10,7 @@ import androidx.lifecycle.LiveData;
 import androidx.lifecycle.MutableLiveData;
 
 import com.wapazock.doozby.Classes.Credentials;
+import com.wapazock.doozby.Repository.CreateNewAccountInterface;
 import com.wapazock.doozby.Repository.DoozbyRepository;
 import com.wapazock.doozby.Utils.Codes;
 

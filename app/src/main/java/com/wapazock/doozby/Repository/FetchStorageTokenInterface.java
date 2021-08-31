@@ -1,4 +1,4 @@
-package com.wapazock.doozby.HomeActivity;
+package com.wapazock.doozby.Repository;
 
 import com.wapazock.doozby.Utils.Codes;
 

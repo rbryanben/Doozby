@@ -8,6 +8,7 @@ import androidx.lifecycle.LiveData;
 import androidx.lifecycle.MutableLiveData;
 
 import com.wapazock.doozby.Repository.DoozbyRepository;
+import com.wapazock.doozby.Repository.FetchStorageTokenInterface;
 import com.wapazock.doozby.Utils.Codes;
 
 import org.jetbrains.annotations.NotNull;

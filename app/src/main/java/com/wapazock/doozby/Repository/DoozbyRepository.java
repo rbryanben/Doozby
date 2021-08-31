@@ -1,15 +1,19 @@
 package com.wapazock.doozby.Repository;
 
-import android.content.SharedPreferences;
+import android.content.Intent;
 
 import com.wapazock.doozby.Classes.Credentials;
-import com.wapazock.doozby.HomeActivity.FetchStorageTokenInterface;
+import com.wapazock.doozby.Classes.Movie;
 import com.wapazock.doozby.Utils.Codes;
-import com.wapazock.doozby.CreateAccountPage.CreateNewAccountInterface;
+import com.wapazockdemo.winterstoreconnector.utils.WinterstoreGetFile;
 
 import org.jetbrains.annotations.NotNull;
+import org.json.JSONArray;
+import org.json.JSONException;
+import org.json.JSONObject;
 
 import java.io.IOException;
+import java.util.ArrayList;
 
 import okhttp3.Call;
 import okhttp3.Callback;
@@ -25,6 +29,7 @@ public class DoozbyRepository {
     private static String serverURL = "http://" + serverDomain ;
     private static String accountsURL = serverURL + "/api/accounts/";
     private static String storageTokenURL = serverURL + "/api/storage_token/";
+    private static String moviesURl = serverURL + "/api/movies/";
     private static String TOKEN = null;
     private static String STORAGE_TOKEN = null;
 
@@ -40,7 +45,6 @@ public class DoozbyRepository {
         }
         return instance;
     }
-
 
     //Create Account : Creates and account, sends an HTTP request
     public void createNewAccount(Credentials newAccountCredentials, CreateNewAccountInterface createNewAccountInterface){
@@ -132,6 +136,62 @@ public class DoozbyRepository {
         });
     }
 
+    // Get Movies : Gets movies from the server, given the last position
+    public void  getMovies(int last_index,GetMoviesInterface getMoviesInterface){
+        //client
+        OkHttpClient client = new OkHttpClient();
+
+        //Request
+        Request clientRequest = new Request.Builder()
+                .addHeader("Authorization","Token " + TOKEN)
+                .url(moviesURl + Integer.toString(last_index) + "/")
+                .build();
+
+        // Send
+        client.newCall(clientRequest).enqueue(new Callback() {
+            @Override
+            public void onFailure(@NotNull Call call, @NotNull IOException e) {
+                getMoviesInterface.result(false,Codes.CONNECTION_ERROR,null);
+            }
+
+            @Override
+            public void onResponse(@NotNull Call call, @NotNull Response response) throws IOException {
+                // If response is not successful
+                if (!response.isSuccessful()){
+                    getMoviesInterface.result(false,Codes.REQUEST_FAILED,null);
+                }
+
+                // result
+                String result = response.body().string();
+
+                // Insert result into a JSONArray
+                try {
+                    // Objects array
+                    JSONArray moviesJSONArray = new JSONArray(result);
+
+                    // Insert objects into a movie array
+                    ArrayList<Movie> receivedMoviesArray = new ArrayList<>();
+
+                    // iterate movies
+                    for (int i=0; i != moviesJSONArray.length() ; i++){
+                        JSONObject movieJSONObject = moviesJSONArray.getJSONObject(i);
+                        // convert movieJSON into Movie
+                        Movie movie = new Movie(movieJSONObject);
+                        // add movie into receivedMoviesArray
+                        receivedMoviesArray.add(movie);
+                    }
+
+                    // return result
+                    getMoviesInterface.result(true,Codes.SUCCESS, receivedMoviesArray);
+
+                } catch (JSONException e) {
+                    getMoviesInterface.result(false,Codes.INVALID_JSON_PARSED,null);
+                }
+            }
+        });
+    }
+
+
     // methods
     public static String getServerDomain() {
         return serverDomain;
@@ -141,7 +201,6 @@ public class DoozbyRepository {
         DoozbyRepository.TOKEN = TOKEN;
     }
 
-    // Get and set storage token
     public static String getStorageTOKEN() {
         return STORAGE_TOKEN;
     }

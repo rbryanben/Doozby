@@ -1,4 +1,4 @@
-package com.wapazock.doozby.CreateAccountPage;
+package com.wapazock.doozby.Repository;
 
 import com.wapazock.doozby.Utils.Codes;
 
