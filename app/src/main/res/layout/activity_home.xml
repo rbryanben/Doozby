@@ -29,7 +29,8 @@
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:gravity="center"
-            android:background="@color/black">
+            android:background="@color/toolBarColor"
+            android:elevation="2dp">
 
             <!-- Tabbed Layout -->
             <com.google.android.material.tabs.TabLayout
@@ -37,7 +38,7 @@
                 android:layout_width="200dp"
                 app:tabSelectedTextColor="@color/silver"
                 android:layout_height="wrap_content"
-                android:background="@color/black"
+                android:background="@color/toolBarColor"
                 app:layout_scrollFlags="scroll|enterAlways|snap"/>
 
         </com.google.android.material.appbar.AppBarLayout>
@@ -53,6 +54,14 @@
         <!-- End Of Coordinator Layout -->
     </androidx.coordinatorlayout.widget.CoordinatorLayout>
 
+    <!-- progress bar -->
+    <ProgressBar
+        android:id="@+id/homeActivityProgressBar"
+        android:layout_width="30dp"
+        android:layout_height="30dp"
+        android:visibility="visible"
+        android:layout_centerInParent="true"/>
+
     <!-- Bottom Navigation View -->
     <com.google.android.material.bottomnavigation.BottomNavigationView
         android:id="@+id/homeActivityBottomNavigationView"
@@ -61,6 +70,7 @@
         android:layout_alignParentBottom="true"
         app:menu="@menu/main_menu"
         app:labelVisibilityMode="labeled"
-        app:itemIconSize="25dp"/>
+        app:itemIconSize="25dp"
+        android:elevation="2dp"/>
 
 </RelativeLayout>

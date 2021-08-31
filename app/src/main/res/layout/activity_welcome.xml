@@ -28,7 +28,8 @@
         android:textStyle="bold"
         android:textSize="14dp"
         app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintTop_toTopOf="parent" />
+        app:layout_constraintTop_toTopOf="parent"
+        android:visibility="gone"/>
 
     <!-- Terms and conditions -->
     <TextView

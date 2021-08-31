@@ -12,7 +12,6 @@ import androidx.lifecycle.MutableLiveData;
 import com.wapazock.doozby.Classes.Credentials;
 import com.wapazock.doozby.Repository.DoozbyRepository;
 import com.wapazock.doozby.Utils.Codes;
-import com.wapazock.doozby.Utils.CreateNewAccountInterface;
 
 import org.jetbrains.annotations.NotNull;
 
@@ -94,6 +93,9 @@ public class CreatePasswordActivityViewModel extends AndroidViewModel {
                     SharedPreferences.Editor editor = preferences.edit();
                     editor.putString("TOKEN",serverResponse);
                     editor.apply();
+
+                    // Set the TOKEN for the repository
+                    DoozbyRepository.setTOKEN(serverResponse);
                 }
                 // Else update error
                 else {

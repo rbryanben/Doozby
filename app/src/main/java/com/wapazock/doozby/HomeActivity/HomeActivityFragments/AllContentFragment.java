@@ -8,12 +8,12 @@ import android.view.ViewGroup;
 import androidx.annotation.NonNull;
 import androidx.annotation.Nullable;
 import androidx.fragment.app.Fragment;
+import androidx.lifecycle.Observer;
+import androidx.lifecycle.ViewModelProvider;
 import androidx.recyclerview.widget.RecyclerView;
 
 import com.wapazock.doozby.Classes.Movie;
 import com.wapazock.doozby.R;
-import com.wapazock.doozby.Utils.RecyclerViewAllContentAdapter;
-import com.wapazock.doozby.Utils.RecyclerViewSpacedDecoration;
 
 import org.jetbrains.annotations.NotNull;
 
@@ -23,6 +23,7 @@ public class AllContentFragment extends Fragment {
 
     // View
     RecyclerView allContentRecyclerView;
+    AllContentFragmentViewModel fragmentViewModel;
 
     @Nullable
     @org.jetbrains.annotations.Nullable
@@ -35,6 +36,9 @@ public class AllContentFragment extends Fragment {
     public void onViewCreated(@NonNull @NotNull View view, @Nullable @org.jetbrains.annotations.Nullable Bundle savedInstanceState) {
         super.onViewCreated(view, savedInstanceState);
 
+        // View model
+        fragmentViewModel = new ViewModelProvider(this).get(AllContentFragmentViewModel.class);
+
         // View
         allContentRecyclerView = view.findViewById(R.id.allContentRecyclerView);
 
@@ -44,34 +48,24 @@ public class AllContentFragment extends Fragment {
 
     // Set Recycler View -- Binds the recycler view with the data
     private void bindContentRecyclerView(){
-        // Dummy Movie List
-        ArrayList<Movie> dummyList = new ArrayList<>();
-        dummyList.add(new Movie("YTTROL1H9ZX9248EHKBD1DVZ96OCQR30H06IKPG3T9U3JIXL9246XQFODE0PMRLP"));
-        dummyList.add(new Movie("5DSPLF0MAW5AGEM8TNVRL0TP8JY69E1BQVY5AZTC0RYBG5DQE8MODHHA5DM9R9PN"));
-        dummyList.add(new Movie("AGRIS9XF02ESD124JWJ1F76AMCM29F3CRLRKKWYEINDQW4RYR5OZFTSJAVA8C7KW"));
-        dummyList.add(new Movie("Y4VS9EJJOS5TG96C0FFZEELDR9CRAC96VOJ2CU5SPJW36T1RM5DQQASZFLPI7FDN"));
-        dummyList.add(new Movie("YTTROL1H9ZX9248EHKBD1DVZ96OCQR30H06IKPG3T9U3JIXL9246XQFODE0PMRLP"));
-        dummyList.add(new Movie("5DSPLF0MAW5AGEM8TNVRL0TP8JY69E1BQVY5AZTC0RYBG5DQE8MODHHA5DM9R9PN"));
-        dummyList.add(new Movie("AGRIS9XF02ESD124JWJ1F76AMCM29F3CRLRKKWYEINDQW4RYR5OZFTSJAVA8C7KW"));
-        dummyList.add(new Movie("Y4VS9EJJOS5TG96C0FFZEELDR9CRAC96VOJ2CU5SPJW36T1RM5DQQASZFLPI7FDN"));
-        dummyList.add(new Movie("YTTROL1H9ZX9248EHKBD1DVZ96OCQR30H06IKPG3T9U3JIXL9246XQFODE0PMRLP"));
-        dummyList.add(new Movie("5DSPLF0MAW5AGEM8TNVRL0TP8JY69E1BQVY5AZTC0RYBG5DQE8MODHHA5DM9R9PN"));
-        dummyList.add(new Movie("AGRIS9XF02ESD124JWJ1F76AMCM29F3CRLRKKWYEINDQW4RYR5OZFTSJAVA8C7KW"));
-        dummyList.add(new Movie("Y4VS9EJJOS5TG96C0FFZEELDR9CRAC96VOJ2CU5SPJW36T1RM5DQQASZFLPI7FDN"));
-        dummyList.add(new Movie("YTTROL1H9ZX9248EHKBD1DVZ96OCQR30H06IKPG3T9U3JIXL9246XQFODE0PMRLP"));
-        dummyList.add(new Movie("5DSPLF0MAW5AGEM8TNVRL0TP8JY69E1BQVY5AZTC0RYBG5DQE8MODHHA5DM9R9PN"));
-        dummyList.add(new Movie("AGRIS9XF02ESD124JWJ1F76AMCM29F3CRLRKKWYEINDQW4RYR5OZFTSJAVA8C7KW"));
-        dummyList.add(new Movie("Y4VS9EJJOS5TG96C0FFZEELDR9CRAC96VOJ2CU5SPJW36T1RM5DQQASZFLPI7FDN"));
 
 
         // New Adapter
-        RecyclerViewAllContentAdapter allContentAdapter = new RecyclerViewAllContentAdapter(dummyList,AllContentFragment.this.getContext());
+        RecyclerViewAllContentAdapter allContentAdapter = new RecyclerViewAllContentAdapter(fragmentViewModel.getMovies().getValue(),AllContentFragment.this.getContext());
 
         // Assign Adapter
         allContentRecyclerView.setAdapter(allContentAdapter);
 
         // Add Item Decoration
         allContentRecyclerView.addItemDecoration(new RecyclerViewSpacedDecoration(15));
+
+        // Detect changes in the data set
+        fragmentViewModel.getMovies().observe(AllContentFragment.this.getActivity(), new Observer<ArrayList<Movie>>() {
+            @Override
+            public void onChanged(ArrayList<Movie> movies) {
+                allContentAdapter.notifyDataSetChanged();
+            }
+        });
 
     }
 

@@ -1,6 +1,5 @@
-package com.wapazock.doozby.Utils;
+package com.wapazock.doozby.HomeActivity.HomeActivityFragments;
 
-import android.app.Activity;
 import android.content.Context;
 import android.graphics.drawable.Drawable;
 import android.view.LayoutInflater;
@@ -22,14 +21,15 @@ import com.bumptech.glide.request.RequestListener;
 import com.bumptech.glide.request.target.Target;
 import com.wapazock.doozby.Classes.Movie;
 import com.wapazock.doozby.R;
-import com.wapazockdemo.winterstoreconnector.interfaces.ConnectionInterface;
-import com.wapazockdemo.winterstoreconnector.utils.Connection;
-import com.wapazockdemo.winterstoreconnector.utils.Credentials;
+import com.wapazock.doozby.Repository.DoozbyRepository;
+import com.wapazock.doozby.Utils.BlurredImageHelper;
+import com.wapazock.doozby.Utils.Codes;
+import com.wapazockdemo.winterstoreconnector.utils.WinterstoreImagesLoaders;
 
 import org.jetbrains.annotations.NotNull;
 
-import java.io.File;
 import java.util.ArrayList;
+import java.util.logging.Handler;
 
 public class RecyclerViewAllContentAdapter extends RecyclerView.Adapter<RecyclerViewAllContentAdapter.ViewHolder> {
 
@@ -62,37 +62,32 @@ public class RecyclerViewAllContentAdapter extends RecyclerView.Adapter<Recycler
         // Get Data To Set
         Movie currentMovie = MOVIES.get(position);
 
-        // Dummy Token
-        String TOKEN = "86efc06c6b5d28dfd6cd5683d2139569208c271e";
-
-
-        loadImage(holder.getMovieImage(),currentMovie.getCoverImageID(),TOKEN);
+        loadImage(holder,currentMovie,0);
     }
 
-    // Load Image: Given an object to display the image, assigns the given
-    // imageID as the image received from the server
-    public void loadImage(ImageView imageView, String imageID, String Token){
-        // Custom Headers for Glide Request
-        GlideUrl url = new GlideUrl("https://cloudwinterstore.co.zw/api/download/" + imageID, new LazyHeaders.Builder()
-                .addHeader("Authorization", "Token " + Token)
-                .build());
+    // Load Image
+    private void loadImage(ViewHolder holder, Movie currentMovie,int  RECURSE_COUNT){
+        //retry handler
+        android.os.Handler retryHandler = new android.os.Handler();
 
-        // Load the image
-        Glide.with(CONTEXT)
-                .load(url)
-                .listener(new RequestListener<Drawable>() {
-                    @Override
-                    public boolean onLoadFailed(@Nullable @org.jetbrains.annotations.Nullable GlideException e, Object model, Target<Drawable> target, boolean isFirstResource) {
-                        return false;
+        WinterstoreImagesLoaders imageLoader = new WinterstoreImagesLoaders(DoozbyRepository.getStorageTOKEN(),CONTEXT);
+        imageLoader.loadImage(holder.movieImage, currentMovie.getCoverImageID(), R.drawable.plain_black_background, new WinterstoreImagesLoaders.ImageLoaderInterface() {
+            @Override
+            public void result(Boolean wasSuccessful, String imageID) {
+                if (!wasSuccessful){
+                    if (RECURSE_COUNT == 26){
+                        return;
                     }
-
-                    @Override
-                    public boolean onResourceReady(Drawable resource, Object model, Target<Drawable> target, DataSource dataSource, boolean isFirstResource) {
-                        return false;
-                    }
-                })
-                .diskCacheStrategy(DiskCacheStrategy.NONE)
-                .into(imageView);
+                    //recurse on a new handler if failed
+                    retryHandler.postDelayed(new Runnable() {
+                        @Override
+                        public void run() {
+                            loadImage(holder,currentMovie, RECURSE_COUNT + 1);
+                        }
+                    },2000);
+                }
+            }
+        });
     }
 
 

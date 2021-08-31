@@ -1,22 +1,15 @@
 package com.wapazock.doozby.Repository;
 
-import android.content.Context;
-import android.os.Looper;
-import android.util.Log;
-
-import androidx.lifecycle.LiveData;
+import android.content.SharedPreferences;
 
 import com.wapazock.doozby.Classes.Credentials;
-import com.wapazock.doozby.GlobalApplication;
-import com.wapazock.doozby.Utils.CheckUsernameInterface;
+import com.wapazock.doozby.HomeActivity.FetchStorageTokenInterface;
 import com.wapazock.doozby.Utils.Codes;
-import com.wapazock.doozby.Utils.CreateNewAccountInterface;
+import com.wapazock.doozby.CreateAccountPage.CreateNewAccountInterface;
 
 import org.jetbrains.annotations.NotNull;
 
 import java.io.IOException;
-import java.util.ArrayList;
-import java.util.logging.Handler;
 
 import okhttp3.Call;
 import okhttp3.Callback;
@@ -31,6 +24,10 @@ public class DoozbyRepository {
     private static String serverDomain = "192.168.1.5:9000";
     private static String serverURL = "http://" + serverDomain ;
     private static String accountsURL = serverURL + "/api/accounts/";
+    private static String storageTokenURL = serverURL + "/api/storage_token/";
+    private static String TOKEN = null;
+    private static String STORAGE_TOKEN = null;
+
 
     // Static Variables
     public static DoozbyRepository instance;
@@ -93,10 +90,63 @@ public class DoozbyRepository {
         });
     }
 
+    // Get Storage Token : Gets the storage token from the server
+    public void getStorageToken(FetchStorageTokenInterface fetchStorageTokenInterface){
+        // Client
+        OkHttpClient client = new OkHttpClient();
+
+        // Request
+        Request clientRequest = new Request.Builder()
+                .addHeader("Authorization","Token " + TOKEN)
+                .url(storageTokenURL)
+                .build();
+
+        // Send the request
+        client.newCall(clientRequest).enqueue(new Callback() {
+            @Override
+            public void onFailure(@NotNull Call call, @NotNull IOException e) {
+                fetchStorageTokenInterface.result(false, Codes.CONNECTION_ERROR,null);
+            }
+
+            @Override
+            public void onResponse(@NotNull Call call, @NotNull Response response) throws IOException {
+                // Response was unsuccessful
+                if (!response.isSuccessful()){
+                    fetchStorageTokenInterface.result(false,Codes.REQUEST_FAILED,null);
+                }
+
+                // Result from the server
+                String result = response.body().string();
+
+                // Check result
+                switch (result){
+                    case "failed":
+                        fetchStorageTokenInterface.result(false,Codes.STORAGE_TOKEN_FETCH_FAILED,null);
+                        break;
+                    default:
+                        setStorageTOKEN(result);
+                        fetchStorageTokenInterface.result(true,Codes.SUCCESS,result);
+
+                }
+            }
+        });
+    }
 
     // methods
-
     public static String getServerDomain() {
         return serverDomain;
+    }
+
+    public static void setTOKEN(String TOKEN) {
+        DoozbyRepository.TOKEN = TOKEN;
+    }
+
+    // Get and set storage token
+    public static String getStorageTOKEN() {
+        return STORAGE_TOKEN;
+    }
+
+    public static void setStorageTOKEN(String storageToken) {
+        STORAGE_TOKEN = storageToken;
     }
 }

@@ -1,4 +1,4 @@
-package com.wapazock.doozby.Utils;
+package com.wapazock.doozby.HomeActivity.HomeActivityFragments;
 
 import android.graphics.Rect;
 import android.view.View;
@@ -21,8 +21,8 @@ public class RecyclerViewSpacedDecoration extends RecyclerView.ItemDecoration {
             outRect.bottom = space;
 
             // Add top margin only for the first item to avoid double space between items
-            if (parent.getChildLayoutPosition(view) == 0) {
-                outRect.top = space;
+            if (parent.getChildLayoutPosition(view) <= 2) {
+                outRect.top = space + 100;
             } else {
                 outRect.top = 0;
             }

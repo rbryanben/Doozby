@@ -8,6 +8,7 @@ import androidx.annotation.Nullable;
 import androidx.appcompat.app.AppCompatActivity;
 
 import com.wapazock.doozby.HomeActivity.HomeActivity;
+import com.wapazock.doozby.Repository.DoozbyRepository;
 import com.wapazock.doozby.WelcomePage.WelcomeActivity;
 
 public class Splash extends AppCompatActivity {
@@ -37,6 +38,10 @@ public class Splash extends AppCompatActivity {
         if (TOKEN == null){
             return false;
         }
+
+        // Set the token in the repository
+        DoozbyRepository.setTOKEN(TOKEN);
+
         return true;
     }
 }
