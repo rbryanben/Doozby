@@ -12,10 +12,11 @@
         android:supportsRtl="true"
         android:theme="@style/Theme.Doozby"
         android:usesCleartextTraffic="true">
+        <activity android:name=".WatchMovie.WatchMovieActivity"></activity>
         <activity
-            android:name=".MovieDetails.MovieDetailsActivity"
+            android:name=".SplashScreen.Splash"
             android:icon="@mipmap/ic_launcher"
-            android:theme="@style/Theme.Doozby">
+            android:theme="@style/SplashTheme">
             <intent-filter>
                 <action android:name="android.intent.action.MAIN" />
 
@@ -30,6 +31,7 @@
         <activity android:name=".TrendingActivity.TrendingActivity" />
         <activity android:name=".PostActivity.PostActivity" />
         <activity android:name=".AccountActivity.AccountActivity" />
+        <activity android:name=".MovieDetails.MovieDetailsActivity" />
     </application>
 
 </manifest>

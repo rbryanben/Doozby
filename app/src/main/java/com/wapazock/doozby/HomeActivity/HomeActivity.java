@@ -110,12 +110,7 @@ public class HomeActivity extends AppCompatActivity {
         homeActivityTabLayout.getTabAt(1).setText("All");
 
         // Hide progress bar after 2 seconds
-        new Handler().postDelayed(new Runnable() {
-            @Override
-            public void run() {
-                homeActivityProgressBar.setVisibility(View.INVISIBLE);
-            }
-        },2000);
+        homeActivityProgressBar.setVisibility(View.INVISIBLE);
     }
 
 

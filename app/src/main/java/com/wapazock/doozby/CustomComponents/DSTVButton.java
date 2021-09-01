@@ -5,6 +5,7 @@ import android.content.res.TypedArray;
 import android.util.AttributeSet;
 import android.widget.FrameLayout;
 import android.widget.ImageView;
+import android.widget.RelativeLayout;
 import android.widget.TextView;
 
 import androidx.annotation.NonNull;
@@ -16,9 +17,9 @@ import com.wapazock.doozby.R;
 public class DSTVButton extends FrameLayout {
 
     // View
-    ConstraintLayout dstvButtonConstraintLayout ;
-    ImageView dstvButtonImageView;
-    TextView dstvButtonTextView;
+    private ConstraintLayout dstvButtonConstraintLayout;
+    private ImageView dstvButtonImageView;
+    private TextView dstvButtonTextView;
 
     public DSTVButton(@NonNull Context context) {
         super(context);
@@ -41,7 +42,7 @@ public class DSTVButton extends FrameLayout {
         inflate(getContext(), R.layout.dstv_button_layout,this);
 
         //view
-        dstvButtonConstraintLayout = getRootView().findViewById(R.id.dstvButtonRootView);
+        dstvButtonConstraintLayout = getRootView().findViewById(R.id.dstvButtonConstraintLayout);
         dstvButtonImageView = getRootView().findViewById(R.id.dstvButtonImageView);
         dstvButtonTextView = getRootView().findViewById(R.id.dstvButtonTextView);
 
@@ -57,7 +58,7 @@ public class DSTVButton extends FrameLayout {
         }
 
         // Typed Array
-        TypedArray attributeArray = getContext().obtainStyledAttributes(R.styleable.DSTVButton);
+        TypedArray attributeArray = getContext().obtainStyledAttributes(attrs,R.styleable.DSTVButton);
 
         // Set Text
         String text = attributeArray.getString(R.styleable.DSTVButton_dstv_button_text);
@@ -76,7 +77,5 @@ public class DSTVButton extends FrameLayout {
     public ConstraintLayout getRootElement(){
         return dstvButtonConstraintLayout;
     }
-
-
 
 }

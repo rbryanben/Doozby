@@ -20,7 +20,9 @@
     <color name="text_header">#D1D1D1</color>
     <color name="silver">#C6C6C6</color>
     <color name="white_ish">#F4F4F4</color>
+    <color name="white_ish_faded">#D8C6C6C6</color>
     <color name="gray_ish">#353535</color>
+    <color name="gray_ish_faded">#C3353535</color>
 
     <!-- panel colors -->
     <color name="toolBarColor">#323232</color>

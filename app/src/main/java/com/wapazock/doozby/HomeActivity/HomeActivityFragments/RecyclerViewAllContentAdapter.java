@@ -1,6 +1,7 @@
 package com.wapazock.doozby.HomeActivity.HomeActivityFragments;
 
 import android.content.Context;
+import android.content.Intent;
 import android.graphics.drawable.Drawable;
 import android.view.LayoutInflater;
 import android.view.View;
@@ -20,6 +21,7 @@ import com.bumptech.glide.load.model.LazyHeaders;
 import com.bumptech.glide.request.RequestListener;
 import com.bumptech.glide.request.target.Target;
 import com.wapazock.doozby.Classes.Movie;
+import com.wapazock.doozby.MovieDetails.MovieDetailsActivity;
 import com.wapazock.doozby.R;
 import com.wapazock.doozby.Repository.DoozbyRepository;
 import com.wapazock.doozby.Utils.BlurredImageHelper;
@@ -30,6 +32,8 @@ import org.jetbrains.annotations.NotNull;
 
 import java.util.ArrayList;
 import java.util.logging.Handler;
+
+import spencerstudios.com.bungeelib.Bungee;
 
 public class RecyclerViewAllContentAdapter extends RecyclerView.Adapter<RecyclerViewAllContentAdapter.ViewHolder> {
 
@@ -62,6 +66,21 @@ public class RecyclerViewAllContentAdapter extends RecyclerView.Adapter<Recycler
         // Get Data To Set
         Movie currentMovie = MOVIES.get(position);
 
+        // Set OnClickListener
+        holder.movieImage.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                // Start movie activity
+                Intent movieActivity = new Intent(CONTEXT,MovieDetailsActivity.class);
+                // Parse data
+                movieActivity.putExtra("movie",MOVIES.get(position));
+
+                //start activity
+                CONTEXT.startActivity(movieActivity);
+                Bungee.slideLeft(CONTEXT);
+            }
+        });
+        //load Image
         loadImage(holder,currentMovie,0);
     }
 

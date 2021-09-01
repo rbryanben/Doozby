@@ -23,7 +23,9 @@
     <color name="text_header">#404040</color>
     <color name="silver">#393939</color>
     <color name="white_ish">#424242</color>
+    <color name="white_ish_faded">#D3424242</color>
     <color name="gray_ish">#DFDFDF</color>
+    <color name="gray_ish_faded">#C4DFDFDF</color>
 
     <!-- Toast Colors -->>
     <color name="amber">#59FF7903</color>
